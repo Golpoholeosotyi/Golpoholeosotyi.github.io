@@ -8,7 +8,7 @@
     body, h1, ul, li, a, img, button {
       margin: 0; padding: 0; border: 0; outline: none;
     }
-    body { font-family: Arial, sans-serif; color: #333; }
+    body { font-family: Arial, sans-serif; color: #333; background-color: #f9f9f9; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
@@ -17,7 +17,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      background-color: #f2f2f2;
+      background-color: #fff;
       border-bottom: 1px solid #ccc;
     }
     .header-left {
@@ -66,41 +66,49 @@
 
     .tiles {
       display: flex;
-      flex-wrap: wrap;
-      margin: 20px;
-      gap: 15px;
-      justify-content: center;
+      flex-direction: column;
+      gap: 1px;
+      max-width: 1000px;
+      margin: 40px auto;
+      border: 1px solid #ccc;
+      background-color: #fff;
     }
     .tile {
-      flex: 1 1 calc(33% - 30px);
-      min-width: 200px;
-      background: #e8e8e8;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      display: flex;
+      align-items: center;
       cursor: pointer;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
-      max-height: 200px;
-      position: relative;
+      border-bottom: 1px solid #eee;
+      transition: background 0.3s;
+    }
+    .tile:hover {
+      background: #f0f0f0;
+    }
+    .tile:last-child {
+      border-bottom: none;
+    }
+    .tile h2 {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      writing-mode: vertical-lr;
+      font-size: 16px;
+      width: 50px;
       text-align: center;
-      padding-top: 15px;
+      padding: 10px;
+      background: #e8e8e8;
+      border-right: 1px solid #ccc;
+    }
+    .tile-content {
+      flex: 1;
+      padding: 20px;
+      display: none;
+    }
+    .tile.active .tile-content {
+      display: block;
     }
     .tile img {
       width: 60px;
       height: 60px;
-      margin-bottom: 10px;
-    }
-    .tile h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    .tile .content {
-      padding: 0 10px 10px 10px;
-      font-size: 14px;
-      display: none;
-    }
-    .tile.expanded .content {
-      display: block;
+      margin-right: 20px;
     }
   </style>
 </head>
@@ -130,52 +138,65 @@
     <div class="overlay">Golpo Holeo Sotyi</div>
   </div>
 
-  <nav class="tiles">
-    <div class="tile" id="tile-map">
-      <img src="assets/img/tile-map.png" alt="Map" />
+  <section class="tiles">
+    <div class="tile">
       <h2>Map</h2>
-      <div class="content">Explore our interactive historical map section here.</div>
+      <div class="tile-content">
+        <img src="assets/img/tile-map.png" alt="Map">
+        <p>Explore our interactive historical map section here.</p>
+      </div>
     </div>
-    <div class="tile" id="tile-contents">
-      <img src="assets/img/tile-contents.png" alt="Contents" />
+    <div class="tile">
       <h2>Contents</h2>
-      <div class="content">Browse curated content and articles.</div>
+      <div class="tile-content">
+        <img src="assets/img/tile-contents.png" alt="Contents">
+        <p>Browse curated content and articles.</p>
+      </div>
     </div>
-    <div class="tile" id="tile-blogs">
-      <img src="assets/img/tile-blogs.png" alt="Blogs" />
+    <div class="tile">
       <h2>Blogs</h2>
-      <div class="content">Read our latest blog posts.</div>
+      <div class="tile-content">
+        <img src="assets/img/tile-blogs.png" alt="Blogs">
+        <p>Read our latest blog posts.</p>
+      </div>
     </div>
-    <div class="tile" id="tile-books">
-      <img src="assets/img/tile-books.png" alt="Books" />
+    <div class="tile">
       <h2>Books</h2>
-      <div class="content">Find recommended books and publications.</div>
+      <div class="tile-content">
+        <img src="assets/img/tile-books.png" alt="Books">
+        <p>Find recommended books and publications.</p>
+      </div>
     </div>
-    <div class="tile" id="tile-programmes">
-      <img src="assets/img/tile-programmes.png" alt="Programmes" />
+    <div class="tile">
       <h2>Programmes</h2>
-      <div class="content">Check upcoming programmes and events.</div>
+      <div class="tile-content">
+        <img src="assets/img/tile-programmes.png" alt="Programmes">
+        <p>Check upcoming programmes and events.</p>
+      </div>
     </div>
-    <div class="tile" id="tile-about">
-      <img src="assets/img/tile-about.png" alt="About Us" />
+    <div class="tile">
       <h2>About Us</h2>
-      <div class="content">Learn more about Golpo Holeo Sotyi.</div>
+      <div class="tile-content">
+        <img src="assets/img/tile-about.png" alt="About Us">
+        <p>Learn more about Golpo Holeo Sotyi.</p>
+      </div>
     </div>
-  </nav>
+  </section>
 
   <footer style="text-align:center; padding:20px; font-size:14px; color:#777;">
     © 2025 Golpo Holeo Sotyi
   </footer>
 
   <script>
-    document.querySelectorAll('.tile').forEach(tile => {
-      tile.addEventListener('click', () => {
-        tile.classList.toggle('expanded');
-      });
-    });
-
     document.getElementById('lang-toggle').addEventListener('change', function() {
       alert('Language switched to: ' + this.value);
+    });
+
+    document.querySelectorAll('.tile').forEach(tile => {
+      tile.addEventListener('click', () => {
+        document.querySelectorAll('.tile').forEach(t => t.classList.remove('active'));
+        tile.classList.add('active');
+      });
     });
   </script>
 

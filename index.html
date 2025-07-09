@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Golpo Holeo Sotyi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background: #f9f9f9; color: #333; }
+    body { font-family: 'Noto Serif Bengali', serif; background: #f9f9f9; color: #333; }
 
     header {
       background: #fff;
@@ -24,7 +25,7 @@
     .language-toggle select { padding: 5px; font-size: 14px; }
 
     .banner {
-      height: 300px;
+      height: 150px;
       background: url('assets/img/your-banner.jpg') center/cover no-repeat;
       display: flex;
       align-items: flex-end;
@@ -34,62 +35,65 @@
     .banner .overlay {
       background: rgba(0,0,0,0.5);
       padding: 10px 20px;
-      font-size: 32px;
+      font-size: 28px;
       border-radius: 4px;
     }
 
-    .tiles-container {
+    .main-layout {
       display: flex;
-      justify-content: center;
-      max-width: 1200px;
-      margin: 40px auto;
-      overflow-x: auto;
+      height: calc(100vh - 190px);
     }
 
+    .tiles-panel {
+      width: 220px;
+      background: #eee;
+      padding: 10px;
+      border-right: 1px solid #ccc;
+      display: grid;
+      grid-template-rows: repeat(6, 1fr);
+      gap: 10px;
+    }
     .tile-card {
-      flex: 0 0 300px;
-      margin: 0 10px;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      background: none;
+      border: none;
       overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      cursor: pointer;
+      position: relative;
     }
-
-    .tiles-container:hover .tile-card {
-      transform: scale(0.9);
-      opacity: 0.6;
-    }
-
-    .tile-card:hover {
-      transform: scale(1.05) !important;
-      opacity: 1 !important;
-      z-index: 2;
-    }
-
     .tile-card img {
       width: 100%;
-      height: 180px;
+      height: 100%;
       object-fit: cover;
+      border-radius: 6px;
+      transition: transform 0.2s ease-in-out;
     }
-    .tile-card .tile-content {
-      padding: 15px;
+    .tile-card:hover img {
+      transform: scale(1.03);
     }
-    .tile-card h3 {
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-    .tile-card p {
+    .tile-heading {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      color: white;
+      background: rgba(0,0,0,0.6);
+      padding: 3px 8px;
+      border-radius: 4px;
       font-size: 14px;
-      color: #666;
+    }
+
+    .content-panel {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 10px;
       font-size: 14px;
       color: #777;
+      background: #fff;
+      border-top: 1px solid #ccc;
     }
   </style>
 </head>
@@ -97,7 +101,7 @@
   <header>
     <div class="header-left">
       <img src="assets/img/logo.png" alt="Logo" class="logo">
-      <div class="brand">Golpo Holeo Sotyi</div>
+      <div class="brand" id="brand-name">Golpo Holeo Sotyi</div>
     </div>
     <div class="header-right">
       <div class="social-icons">
@@ -115,53 +119,40 @@
   </header>
 
   <div class="banner">
-    <div class="overlay">Golpo Holeo Sotyi</div>
+    <div class="overlay" id="banner-title">Golpo Holeo Sotyi</div>
   </div>
 
-  <section class="tiles-container" id="tiles-container">
-    <a class="tile-card" href="map.html">
-      <img src="assets/img/tile-map.png" alt="Map">
-      <div class="tile-content">
-        <h3 data-en="Map" data-bn="মানচিত্র">Map</h3>
-        <p data-en="Explore our interactive historical map section here." data-bn="ইতিহাসভিত্তিক মানচিত্র ঘুরে দেখুন।">Explore our interactive historical map section here.</p>
+  <div class="main-layout">
+    <div class="tiles-panel">
+      <div class="tile-card" onclick="loadContent('map.html')">
+        <span class="tile-heading" data-en="Map" data-bn="মানচিত্র">Map</span>
+        <img src="assets/img/tile-map.jpg" alt="Map">
       </div>
-    </a>
-    <a class="tile-card" href="contents.html">
-      <img src="assets/img/tile-contents.png" alt="Contents">
-      <div class="tile-content">
-        <h3 data-en="Contents" data-bn="বিষয়বস্তু">Contents</h3>
-        <p data-en="Browse curated content and articles." data-bn="নির্বাচিত বিষয়বস্তু পড়ুন।">Browse curated content and articles.</p>
+      <div class="tile-card" onclick="loadContent('contents.html')">
+        <span class="tile-heading" data-en="Contents" data-bn="বিষয়বস্তু">Contents</span>
+        <img src="assets/img/tile-contents.jpg" alt="Contents">
       </div>
-    </a>
-    <a class="tile-card" href="blogs.html">
-      <img src="assets/img/tile-blogs.png" alt="Blogs">
-      <div class="tile-content">
-        <h3 data-en="Blogs" data-bn="ব্লগ">Blogs</h3>
-        <p data-en="Read our latest blog posts." data-bn="আমাদের সর্বশেষ ব্লগ পড়ুন।">Read our latest blog posts.</p>
+      <div class="tile-card" onclick="loadContent('blogs.html')">
+        <span class="tile-heading" data-en="Blogs" data-bn="ব্লগ">Blogs</span>
+        <img src="assets/img/tile-blogs.jpg" alt="Blogs">
       </div>
-    </a>
-    <a class="tile-card" href="books.html">
-      <img src="assets/img/tile-books.png" alt="Books">
-      <div class="tile-content">
-        <h3 data-en="Books" data-bn="বই">Books</h3>
-        <p data-en="Find recommended books and publications." data-bn="প্রস্তাবিত বই ও প্রকাশনা দেখুন।">Find recommended books and publications.</p>
+      <div class="tile-card" onclick="loadContent('books.html')">
+        <span class="tile-heading" data-en="Books" data-bn="বই">Books</span>
+        <img src="assets/img/tile-books.jpg" alt="Books">
       </div>
-    </a>
-    <a class="tile-card" href="programmes.html">
-      <img src="assets/img/tile-programmes.png" alt="Programmes">
-      <div class="tile-content">
-        <h3 data-en="Programmes" data-bn="প্রোগ্রাম">Programmes</h3>
-        <p data-en="Check upcoming programmes and events." data-bn="আসন্ন প্রোগ্রাম ও ইভেন্ট দেখুন।">Check upcoming programmes and events.</p>
+      <div class="tile-card" onclick="loadContent('programmes.html')">
+        <span class="tile-heading" data-en="Programmes" data-bn="প্রোগ্রাম">Programmes</span>
+        <img src="assets/img/tile-programmes.jpg" alt="Programmes">
       </div>
-    </a>
-    <a class="tile-card" href="about.html">
-      <img src="assets/img/tile-about.png" alt="About Us">
-      <div class="tile-content">
-        <h3 data-en="About Us" data-bn="আমাদের সম্পর্কে">About Us</h3>
-        <p data-en="Learn more about Golpo Holeo Sotyi." data-bn="গল্প হলেও সত্যি সম্পর্কে জানুন।">Learn more about Golpo Holeo Sotyi.</p>
+      <div class="tile-card" onclick="loadContent('about.html')">
+        <span class="tile-heading" data-en="About Us" data-bn="আমাদের সম্পর্কে">About Us</span>
+        <img src="assets/img/tile-about.jpg" alt="About Us">
       </div>
-    </a>
-  </section>
+    </div>
+    <div class="content-panel" id="content-panel">
+      <p>Select a section from the left panel to load its content here.</p>
+    </div>
+  </div>
 
   <footer>
     © 2025 Golpo Holeo Sotyi
@@ -170,10 +161,24 @@
   <script>
     document.getElementById('lang-toggle').addEventListener('change', function() {
       const lang = this.value;
-      document.querySelectorAll('[data-en]').forEach(el => {
+      document.getElementById('brand-name').textContent = lang === 'bn' ? 'গল্প হলেও সত্যি' : 'Golpo Holeo Sotyi';
+      document.getElementById('banner-title').textContent = lang === 'bn' ? 'গল্প হলেও সত্যি' : 'Golpo Holeo Sotyi';
+
+      document.querySelectorAll('.tile-heading').forEach(el => {
         el.textContent = el.getAttribute('data-' + lang);
       });
     });
+
+    function loadContent(page) {
+      fetch(page)
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('content-panel').innerHTML = html;
+        })
+        .catch(() => {
+          document.getElementById('content-panel').innerHTML = '<p>Failed to load content.</p>';
+        });
+    }
   </script>
 </body>
 </html>

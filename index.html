@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Golpo Holeo Sotyi</title>
   <style>
-    /* Base resets and fonts */
     body, h1, ul, li, a, img, button {
       margin: 0; padding: 0; border: 0; outline: none;
     }
@@ -13,7 +12,6 @@
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    /* Header styling */
     .header {
       display: flex;
       justify-content: space-between;
@@ -49,11 +47,10 @@
       padding: 5px;
     }
 
-    /* Banner */
     .banner {
       width: 100%;
       height: 300px;
-      background: url('your-banner.jpg') center/cover no-repeat;
+      background: url('assets/img/your-banner.jpg') center/cover no-repeat;
       position: relative;
     }
     .banner .overlay {
@@ -67,7 +64,6 @@
       font-size: 32px;
     }
 
-    /* Tiles navigation */
     .tiles {
       display: flex;
       flex-wrap: wrap;
@@ -84,19 +80,22 @@
       cursor: pointer;
       overflow: hidden;
       transition: max-height 0.3s ease;
-      max-height: 45px;
-      position: relative;
-    }
-    .tile.expanded {
       max-height: 200px;
+      position: relative;
+      text-align: center;
+      padding-top: 15px;
+    }
+    .tile img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
     }
     .tile h2 {
-      padding: 10px;
       font-size: 18px;
-      background: #d0d0d0;
+      margin-bottom: 10px;
     }
     .tile .content {
-      padding: 10px;
+      padding: 0 10px 10px 10px;
       font-size: 14px;
       display: none;
     }
@@ -107,17 +106,16 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header class="header">
     <div class="header-left">
-      <img src="logo.png" alt="Golpo Holeo Sotyi logo" class="logo" />
+      <img src="assets/img/logo.png" alt="Golpo Holeo Sotyi logo" class="logo" />
       <div class="brand">Golpo Holeo Sotyi</div>
     </div>
     <div class="header-right">
       <div class="social-icons">
-        <a href="#"><img src="icon-facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="icon-twitter.png" alt="Twitter" /></a>
-        <a href="#"><img src="icon-instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="assets/img/icon-facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="assets/img/icon-twitter.png" alt="Twitter" /></a>
+        <a href="#"><img src="assets/img/icon-instagram.png" alt="Instagram" /></a>
       </div>
       <div class="language-toggle">
         <select id="lang-toggle">
@@ -128,56 +126,56 @@
     </div>
   </header>
 
-  <!-- Banner -->
   <div class="banner">
     <div class="overlay">Golpo Holeo Sotyi</div>
   </div>
 
-  <!-- Tiles -->
   <nav class="tiles">
     <div class="tile" id="tile-map">
+      <img src="assets/img/tile-map.png" alt="Map" />
       <h2>Map</h2>
       <div class="content">Explore our interactive historical map section here.</div>
     </div>
     <div class="tile" id="tile-contents">
+      <img src="assets/img/tile-contents.png" alt="Contents" />
       <h2>Contents</h2>
       <div class="content">Browse curated content and articles.</div>
     </div>
     <div class="tile" id="tile-blogs">
+      <img src="assets/img/tile-blogs.png" alt="Blogs" />
       <h2>Blogs</h2>
       <div class="content">Read our latest blog posts.</div>
     </div>
     <div class="tile" id="tile-books">
+      <img src="assets/img/tile-books.png" alt="Books" />
       <h2>Books</h2>
       <div class="content">Find recommended books and publications.</div>
     </div>
     <div class="tile" id="tile-programmes">
+      <img src="assets/img/tile-programmes.png" alt="Programmes" />
       <h2>Programmes</h2>
       <div class="content">Check upcoming programmes and events.</div>
     </div>
     <div class="tile" id="tile-about">
+      <img src="assets/img/tile-about.png" alt="About Us" />
       <h2>About Us</h2>
       <div class="content">Learn more about Golpo Holeo Sotyi.</div>
     </div>
   </nav>
 
-  <!-- Optional footer -->
   <footer style="text-align:center; padding:20px; font-size:14px; color:#777;">
     © 2025 Golpo Holeo Sotyi
   </footer>
 
   <script>
-    // Collapsible tile functionality
     document.querySelectorAll('.tile').forEach(tile => {
       tile.addEventListener('click', () => {
         tile.classList.toggle('expanded');
       });
     });
 
-    // Language toggle behavior (placeholder)
     document.getElementById('lang-toggle').addEventListener('change', function() {
       alert('Language switched to: ' + this.value);
-      // Implement your actual language-switch logic here
     });
   </script>
 

@@ -1,129 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Golpo Holeo Sotyi</title>
   <style>
-    body, h1, ul, li, a, img, button {
-      margin: 0; padding: 0; border: 0; outline: none;
-    }
-    body { font-family: Arial, sans-serif; color: #333; background-color: #f9f9f9; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f9f9f9; color: #333; }
 
-    .header {
+    header {
+      background: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      background-color: #fff;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #ddd;
     }
-    .header-left {
-      display: flex;
-      align-items: center;
-    }
-    .header-left img.logo {
-      height: 40px;
-      margin-right: 10px;
-    }
-    .header-left .brand {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    .social-icons img {
-      height: 24px;
-      width: 24px;
-      cursor: pointer;
-    }
-    .language-toggle select {
-      font-size: 14px;
-      padding: 5px;
-    }
+    .header-left { display: flex; align-items: center; }
+    .header-left img.logo { height: 40px; margin-right: 10px; }
+    .header-left .brand { font-size: 24px; font-weight: bold; }
+    .header-right { display: flex; align-items: center; gap: 15px; }
+    .social-icons img { height: 24px; width: 24px; cursor: pointer; }
+    .language-toggle select { padding: 5px; font-size: 14px; }
 
     .banner {
-      width: 100%;
       height: 300px;
       background: url('assets/img/your-banner.jpg') center/cover no-repeat;
-      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+      color: white;
     }
     .banner .overlay {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: white;
       background: rgba(0,0,0,0.5);
-      padding: 10px;
-      border-radius: 4px;
+      padding: 10px 20px;
       font-size: 32px;
+      border-radius: 4px;
     }
 
-    .tiles {
+    .tiles-container {
       display: flex;
-      flex-direction: column;
-      gap: 1px;
-      max-width: 1000px;
+      justify-content: center;
+      max-width: 1200px;
       margin: 40px auto;
+      overflow-x: auto;
+    }
+
+    .tile-card {
+      flex: 0 0 300px;
+      margin: 0 10px;
+      background: #fff;
       border: 1px solid #ccc;
-      background-color: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    .tile {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      border-bottom: 1px solid #eee;
-      transition: background 0.3s;
+
+    .tiles-container:hover .tile-card {
+      transform: scale(0.9);
+      opacity: 0.6;
     }
-    .tile:hover {
-      background: #f0f0f0;
+
+    .tile-card:hover {
+      transform: scale(1.05) !important;
+      opacity: 1 !important;
+      z-index: 2;
     }
-    .tile:last-child {
-      border-bottom: none;
+
+    .tile-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
     }
-    .tile h2 {
-      transform: rotate(-90deg);
-      transform-origin: left top;
-      writing-mode: vertical-lr;
-      font-size: 16px;
-      width: 50px;
+    .tile-card .tile-content {
+      padding: 15px;
+    }
+    .tile-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .tile-card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    footer {
       text-align: center;
-      padding: 10px;
-      background: #e8e8e8;
-      border-right: 1px solid #ccc;
-    }
-    .tile-content {
-      flex: 1;
       padding: 20px;
-      display: none;
-    }
-    .tile.active .tile-content {
-      display: block;
-    }
-    .tile img {
-      width: 60px;
-      height: 60px;
-      margin-right: 20px;
+      font-size: 14px;
+      color: #777;
     }
   </style>
 </head>
 <body>
-
-  <header class="header">
+  <header>
     <div class="header-left">
-      <img src="assets/img/logo.png" alt="Golpo Holeo Sotyi logo" class="logo" />
+      <img src="assets/img/logo.png" alt="Logo" class="logo">
       <div class="brand">Golpo Holeo Sotyi</div>
     </div>
     <div class="header-right">
       <div class="social-icons">
-        <a href="#"><img src="assets/img/icon-facebook.png" alt="Facebook" /></a>
-        <a href="#"><img src="assets/img/icon-twitter.png" alt="Twitter" /></a>
-        <a href="#"><img src="assets/img/icon-instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="assets/img/icon-facebook.png" alt="Facebook"></a>
+        <a href="#"><img src="assets/img/icon-twitter.png" alt="Twitter"></a>
+        <a href="#"><img src="assets/img/icon-instagram.png" alt="Instagram"></a>
       </div>
       <div class="language-toggle">
         <select id="lang-toggle">
@@ -138,67 +118,62 @@
     <div class="overlay">Golpo Holeo Sotyi</div>
   </div>
 
-  <section class="tiles">
-    <div class="tile">
-      <h2>Map</h2>
+  <section class="tiles-container" id="tiles-container">
+    <a class="tile-card" href="map.html">
+      <img src="assets/img/tile-map.png" alt="Map">
       <div class="tile-content">
-        <img src="assets/img/tile-map.png" alt="Map">
-        <p>Explore our interactive historical map section here.</p>
+        <h3 data-en="Map" data-bn="মানচিত্র">Map</h3>
+        <p data-en="Explore our interactive historical map section here." data-bn="ইতিহাসভিত্তিক মানচিত্র ঘুরে দেখুন।">Explore our interactive historical map section here.</p>
       </div>
-    </div>
-    <div class="tile">
-      <h2>Contents</h2>
+    </a>
+    <a class="tile-card" href="contents.html">
+      <img src="assets/img/tile-contents.png" alt="Contents">
       <div class="tile-content">
-        <img src="assets/img/tile-contents.png" alt="Contents">
-        <p>Browse curated content and articles.</p>
+        <h3 data-en="Contents" data-bn="বিষয়বস্তু">Contents</h3>
+        <p data-en="Browse curated content and articles." data-bn="নির্বাচিত বিষয়বস্তু পড়ুন।">Browse curated content and articles.</p>
       </div>
-    </div>
-    <div class="tile">
-      <h2>Blogs</h2>
+    </a>
+    <a class="tile-card" href="blogs.html">
+      <img src="assets/img/tile-blogs.png" alt="Blogs">
       <div class="tile-content">
-        <img src="assets/img/tile-blogs.png" alt="Blogs">
-        <p>Read our latest blog posts.</p>
+        <h3 data-en="Blogs" data-bn="ব্লগ">Blogs</h3>
+        <p data-en="Read our latest blog posts." data-bn="আমাদের সর্বশেষ ব্লগ পড়ুন।">Read our latest blog posts.</p>
       </div>
-    </div>
-    <div class="tile">
-      <h2>Books</h2>
+    </a>
+    <a class="tile-card" href="books.html">
+      <img src="assets/img/tile-books.png" alt="Books">
       <div class="tile-content">
-        <img src="assets/img/tile-books.png" alt="Books">
-        <p>Find recommended books and publications.</p>
+        <h3 data-en="Books" data-bn="বই">Books</h3>
+        <p data-en="Find recommended books and publications." data-bn="প্রস্তাবিত বই ও প্রকাশনা দেখুন।">Find recommended books and publications.</p>
       </div>
-    </div>
-    <div class="tile">
-      <h2>Programmes</h2>
+    </a>
+    <a class="tile-card" href="programmes.html">
+      <img src="assets/img/tile-programmes.png" alt="Programmes">
       <div class="tile-content">
-        <img src="assets/img/tile-programmes.png" alt="Programmes">
-        <p>Check upcoming programmes and events.</p>
+        <h3 data-en="Programmes" data-bn="প্রোগ্রাম">Programmes</h3>
+        <p data-en="Check upcoming programmes and events." data-bn="আসন্ন প্রোগ্রাম ও ইভেন্ট দেখুন।">Check upcoming programmes and events.</p>
       </div>
-    </div>
-    <div class="tile">
-      <h2>About Us</h2>
+    </a>
+    <a class="tile-card" href="about.html">
+      <img src="assets/img/tile-about.png" alt="About Us">
       <div class="tile-content">
-        <img src="assets/img/tile-about.png" alt="About Us">
-        <p>Learn more about Golpo Holeo Sotyi.</p>
+        <h3 data-en="About Us" data-bn="আমাদের সম্পর্কে">About Us</h3>
+        <p data-en="Learn more about Golpo Holeo Sotyi." data-bn="গল্প হলেও সত্যি সম্পর্কে জানুন।">Learn more about Golpo Holeo Sotyi.</p>
       </div>
-    </div>
+    </a>
   </section>
 
-  <footer style="text-align:center; padding:20px; font-size:14px; color:#777;">
+  <footer>
     © 2025 Golpo Holeo Sotyi
   </footer>
 
   <script>
     document.getElementById('lang-toggle').addEventListener('change', function() {
-      alert('Language switched to: ' + this.value);
-    });
-
-    document.querySelectorAll('.tile').forEach(tile => {
-      tile.addEventListener('click', () => {
-        document.querySelectorAll('.tile').forEach(t => t.classList.remove('active'));
-        tile.classList.add('active');
+      const lang = this.value;
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
       });
     });
   </script>
-
 </body>
 </html>

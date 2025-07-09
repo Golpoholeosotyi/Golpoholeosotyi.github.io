@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golpo Holeo Sotyi - History Stories</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar */
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+
+    select {
+      margin-left: 20px;
+      padding: 4px;
+      border-radius: 5px;
+      border: none;
+      font-size: 14px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-image: url('https://www.worldhistory.org/img/c/p/500x600/15944.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 5px #000;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      max-width: 600px;
+    }
+
+    /* Content Grid */
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      margin: 10px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0 10px 10px 10px;
+      color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: #ccc;
+      padding: 1rem;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <h1 id="title">Golpo Holeo Sotyi</h1>
+    <nav>
+      <a href="#" id="navHome">Home</a>
+      <a href="#" id="navStories">Stories</a>
+      <a href="#" id="navAbout">About</a>
+      <a href="#" id="navContact">Contact</a>
+      <select onchange="changeLanguage(this.value)">
+        <option value="en">🌐 English</option>
+        <option value="bn">🌐 বাংলা</option>
+      </select>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2 id="heroText">Discover Fascinating True Stories from History</h2>
+  </section>
+
+  <!-- Articles -->
+  <section class="articles">
+    <div class="card">
+      <img src="https://www.worldhistory.org/img/c/p/500x600/16236.jpg" alt="Story 1">
+      <h3 id="card1Title">The Mummy That Fooled the Nazis</h3>
+      <p id="card1Text">A tale of deception, history, and mystery from WWII Egypt.</p>
+    </div>
+    <div class="card">
+      <img src="https://www.worldhistory.org/img/c/p/500x600/16400.jpg" alt="Story 2">
+      <h3 id="card2Title">The Monk Who Met Genghis Khan</h3>
+      <p id="card2Text">How a European friar crossed Asia and met the Mongol Emperor.</p>
+    </div>
+    <div class="card">
+      <img src="https://www.worldhistory.org/img/c/p/500x600/16335.jpg" alt="Story 3">
+      <h3 id="card3Title">Napoleon’s Secret Letter</h3>
+      <p id="card3Text">What did Napoleon write before his final defeat at Waterloo?</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p id="footerText">© 2025 Golpo Holeo Sotyi | Stories from History | All Rights Reserved</p>
+  </footer>
+
+  <!-- Language Switcher Script -->
+  <script>
+    const translations = {
+      en: {
+        title: "Golpo Holeo Sotyi",
+        navHome: "Home",
+        navStories: "Stories",
+        navAbout: "About",
+        navContact: "Contact",
+        heroText: "Discover Fascinating True Stories from History",
+        card1Title: "The Mummy That Fooled the Nazis",
+        card1Text: "A tale of deception, history, and mystery from WWII Egypt.",
+        card2Title: "The Monk Who Met Genghis Khan",
+        card2Text: "How a European friar crossed Asia and met the Mongol Emperor.",
+        card3Title: "Napoleon’s Secret Letter",
+        card3Text: "What did Napoleon write before his final defeat at Waterloo?",
+        footerText: "© 2025 Golpo Holeo Sotyi | Stories from History | All Rights Reserved"
+      },
+      bn: {
+        title: "গল্প হলেও সত্যি",
+        navHome: "প্রথম পৃষ্ঠা",
+        navStories: "গল্পসমূহ",
+        navAbout: "আমাদের সম্পর্কে",
+        navContact: "যোগাযোগ",
+        heroText: "ইতিহাসের অবিশ্বাস্য অথচ সত্যি গল্প আবিষ্কার করুন",
+        card1Title: "নাজিদের ঠকানো মমি",
+        card1Text: "দ্বিতীয় বিশ্বযুদ্ধের মিসরে ঘটে যাওয়া এক প্রতারণা ও রহস্যের কাহিনি।",
+        card2Title: "যাজক যিনি চেঙ্গিস খানের সঙ্গে সাক্ষাৎ করেছিলেন",
+        card2Text: "কীভাবে একজন ইউরোপীয় ফ্রায়ার এশিয়া পেরিয়ে মঙ্গোল সম্রাটের সঙ্গে দেখা করেছিলেন।",
+        card3Title: "নেপোলিয়নের গোপন চিঠি",
+        card3Text: "ওয়াটারলুর যুদ্ধে পরাজয়ের আগে কী লিখেছিলেন নেপোলিয়ন?",
+        footerText: "© ২০২৫ গল্প হলেও সত্যি | ইতিহাসভিত্তিক কাহিনি | সর্বস্বত্ব সংরক্ষিত"
+      }
+    };
+
+    function changeLanguage(lang) {
+      for (let key in translations[lang]) {
+        const el = document.getElementById(key);
+        if (el) el.textContent = translations[lang][key];
+      }
+    }
+  </script>
+
+</body>
+</html>

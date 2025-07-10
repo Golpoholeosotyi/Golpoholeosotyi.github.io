@@ -23,40 +23,48 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       padding: 10px 20px;
       border-bottom: 1px solid #444;
     }
     .header-left { display: flex; align-items: center; }
     .header-left img.logo { height: 40px; margin-right: 10px; }
     .header-left .brand { font-size: 24px; font-weight: bold; color: #f0f0f0; }
-    .header-right { display: flex; align-items: center; gap: 15px; }
+    .header-right { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
     .social-icons img {
       height: 30px;
       width: 30px;
       cursor: pointer;
       filter: brightness(0) invert(1);
     }
-    .language-toggle select {
-      padding: 5px;
-      font-size: 14px;
-      background: #333;
-      color: #fff;
-      border: 1px solid #666;
-    }
 
     .banner {
-      height: 200px;
+      height: 220px;
       background: url('assets/img/your-banner.jpg') center/cover no-repeat;
       display: flex;
+      justify-content: space-between;
       align-items: flex-end;
       padding: 20px;
       color: white;
+      position: relative;
     }
     .banner .overlay {
       background: rgba(0,0,0,0.6);
       padding: 10px 20px;
       font-size: 32px;
       border-radius: 4px;
+    }
+    .language-toggle-banner {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+    .language-toggle-banner select {
+      padding: 6px 10px;
+      font-size: 14px;
+      background: #333;
+      color: #fff;
+      border: 1px solid #666;
     }
 
     .tiles-grid {
@@ -124,6 +132,18 @@
       .tiles-grid {
         grid-template-columns: 1fr;
       }
+      .header-left .brand {
+        font-size: 18px;
+      }
+      .header-left img.logo {
+        height: 30px;
+      }
+      .header-right {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
@@ -139,17 +159,17 @@
         <a href="https://www.youtube.com/c/GolpoHoleoSotyi"><img src="assets/img/icon-youtube.png" alt="YouTube"></a>
         <a href="https://www.instagram.com/golpoholeosotyi/"><img src="assets/img/icon-instagram.png" alt="Instagram"></a>
       </div>
-      <div class="language-toggle">
-        <select id="lang-toggle">
-          <option value="en">English</option>
-          <option value="bn">বাংলা</option>
-        </select>
-      </div>
     </div>
   </header>
 
   <div class="banner">
     <div class="overlay" id="banner-title">Golpo Holeo Sotyi</div>
+    <div class="language-toggle-banner">
+      <select id="lang-toggle">
+        <option value="en">English</option>
+        <option value="bn">বাংলা</option>
+      </select>
+    </div>
   </div>
 
   <main class="tiles-grid">

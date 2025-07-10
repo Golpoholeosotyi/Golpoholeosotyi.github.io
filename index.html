@@ -1,40 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Golpo Holeo Sotyi | Bengali History & Culture Blog</title>
-  <meta name="description" content="Golpo Holeo Sotyi is a Bengali blog uncovering forgotten stories from Kolkata's rich history and culture. A platform dedicated to true stories, history, and heritage—created and managed by Sounak Kundu.">
-  <meta name="keywords" content="Golpo Holeo Sotyi, golpo holeo shotti, golpo holeo sotti, galpa holeo satyi, Bengali History, Kolkata History, Calcutta History, গল্প হলেও সত্যি, পুরোনো কলকাতার ইতিহাস, ইতিহাসের গল্প, Bangla Blog, ইতিহাসের পাতা থেকে, Bengali storytelling, old Kolkata blog, forgotten history of Kolkata, Bengali culture blog, Kolkata heritage, Bengali folktales, Bengali legends">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Golpo Holeo Sotyi</title>
+  <meta name="description" content="True stories from the heart of Bengal and Kolkata — Golpo Holeo Sotyi brings history alive through blogs, books, programs, and more.">
+  <meta name="keywords" content="golpo holeo sotyi, golpo holeo shotti, golpo holeo sotti, galpa holeo satyi, kolkata history, bengali history, গল্প হলেও সত্যি, কলকাতার ইতিহাস, কলিকাতার ইতিহাস, পুরোনো কলকাতার গল্প, পুরোনো কলকাতার ইতিহাস, ইতিহাসের পাতা থেকে, ইতিহাসের গল্প, calcutta history, history of kolkata">
   <meta name="author" content="Sounak Kundu">
-  <link rel="canonical" href="https://golpoholeosotyi.github.io/">
-  <link rel="icon" href="assets/img/logo.png">
+  <meta property="og:title" content="Golpo Holeo Sotyi">
+  <meta property="og:description" content="True stories from the heart of Bengal and Kolkata — Golpo Holeo Sotyi brings history alive through blogs, books, programs, and more.">
+  <meta property="og:image" content="banner.jpg">
+  <meta property="og:url" content="https://golpoholeosotyi.github.io">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Golpo Holeo Sotyi",
-    "url": "https://golpoholeosotyi.github.io",
-    "description": "A Bengali blog on Kolkata's hidden history and stories, managed by Sounak Kundu.",
-    "inLanguage": "bn",
-    "keywords": "গল্প হলেও সত্যি, golpo holeo sotyi, kolkata history, Bengali blog, Calcutta history",
-    "author": {
-      "@type": "Person",
-      "name": "Sounak Kundu"
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Serif Bengali', serif;
+      background-color: #1a1a1a;
+      color: #f5f5f5;
     }
-  }
-  </script>
-  <meta property="og:title" content="Golpo Holeo Sotyi – Bengali History Blog" />
-  <meta property="og:description" content="Explore real Bengali stories and Kolkata's history through our cultural blog and digital archive. Managed by Sounak Kundu." />
-  <meta property="og:image" content="https://golpoholeosotyi.github.io/assets/img/your-banner.jpg" />
-  <meta property="og:url" content="https://golpoholeosotyi.github.io/" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Golpo Holeo Sotyi – Bengali History Blog" />
-  <meta name="twitter:description" content="Explore true stories from Bengal and Kolkata on Golpo Holeo Sotyi. Curated and managed by Sounak Kundu." />
-  <meta name="twitter:image" content="https://golpoholeosotyi.github.io/assets/img/your-banner.jpg" />
-  <meta name="robots" content="index, follow" />
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #222;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    .header-left img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    .header-left .brand {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+      filter: invert(1);
+    }
+    .language-toggle select {
+      padding: 6px;
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      background: url('banner.jpg') center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+      position: relative;
+      text-shadow: 2px 2px 5px black;
+    }
+    .language-toggle {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 30px;
+    }
+    .tile {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    .tile img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      filter: brightness(70%);
+      transition: transform 0.3s ease;
+    }
+    .tile:hover img {
+      transform: scale(1.1);
+    }
+    .tile-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 1px 1px 4px black;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+    @media (max-width: 768px) {
+      .tiles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 500px) {
+      .tiles {
+        grid-template-columns: 1fr;
+      }
+      .banner {
+        font-size: 24px;
+        height: 200px;
+      }
+    }
+  </style>
 </head>
 <body>
-<!-- The rest of your HTML remains unchanged -->
+  <header>
+    <div class="header-left">
+      <img src="logo.png" alt="Logo" />
+      <div class="brand">Golpo Holeo Sotyi</div>
+    </div>
+    <div class="header-right">
+      <div class="social-icons">
+        <a href="https://www.youtube.com/c/GolpoHoleoSotyi" target="_blank"><img src="icons/youtube.png" alt="YouTube"></a>
+        <a href="https://www.facebook.com/golpoholeosotyii" target="_blank"><img src="icons/facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/golpoholeosotyi/" target="_blank"><img src="icons/instagram.png" alt="Instagram"></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="banner">
+    <div id="banner-title">Golpo Holeo Sotyi</div>
+    <div class="language-toggle">
+      <select id="lang-toggle">
+        <option value="en">English</option>
+        <option value="bn">বাংলা</option>
+      </select>
+    </div>
+  </div>
+
+  <main class="tiles">
+    <a class="tile" href="map.html">
+      <img src="tiles/map.jpg" alt="Map">
+      <div class="tile-title">Map</div>
+    </a>
+    <a class="tile" href="contents.html">
+      <img src="tiles/contents.jpg" alt="Contents">
+      <div class="tile-title">Contents</div>
+    </a>
+    <a class="tile" href="blogs.html">
+      <img src="tiles/blogs.jpg" alt="Blogs">
+      <div class="tile-title">Blogs</div>
+    </a>
+    <a class="tile" href="books.html">
+      <img src="tiles/books.jpg" alt="Books">
+      <div class="tile-title">Books</div>
+    </a>
+    <a class="tile" href="programmes.html">
+      <img src="tiles/programmes.jpg" alt="Programmes">
+      <div class="tile-title">Programmes</div>
+    </a>
+    <a class="tile" href="about.html">
+      <img src="tiles/about.jpg" alt="About us">
+      <div class="tile-title">About Us</div>
+    </a>
+  </main>
+
+  <footer>
+    © 2025 Golpo Holeo Sotyi | Created by Sounak Kundu
+  </footer>
+
+  <script>
+    document.getElementById('lang-toggle').addEventListener('change', function () {
+      const banner = document.getElementById('banner-title');
+      if (this.value === 'bn') {
+        banner.textContent = 'গল্প হলেও সত্যি';
+        document.title = 'গল্প হলেও সত্যি';
+      } else {
+        banner.textContent = 'Golpo Holeo Sotyi';
+        document.title = 'Golpo Holeo Sotyi';
+      }
+    });
+  </script>
+</body>
+</html>

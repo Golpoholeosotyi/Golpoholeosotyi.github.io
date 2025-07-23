@@ -2,202 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Golpo Holeo Sotyi</title>
-  <meta name="description" content="True stories from the heart of Bengal and Kolkata — Golpo Holeo Sotyi brings history alive through blogs, books, programs, and more.">
-  <meta name="keywords" content="golpo holeo sotyi, golpo holeo shotti, golpo holeo sotti, galpa holeo satyi, kolkata history, bengali history, গল্প হলেও সত্যি, কলকাতার ইতিহাস, কলিকাতার ইতিহাস, পুরোনো কলকাতার গল্প, পুরোনো কলকাতার ইতিহাস, ইতিহাসের পাতা থেকে, ইতিহাসের গল্প, calcutta history, history of kolkata">
-  <meta name="author" content="Sounak Kundu">
-  <meta property="og:title" content="Golpo Holeo Sotyi">
-  <meta property="og:description" content="True stories from the heart of Bengal and Kolkata — Golpo Holeo Sotyi brings history alive through blogs, books, programs, and more.">
-  <meta property="og:image" content="banner.jpg">
-  <meta property="og:url" content="https://golpoholeosotyi.github.io">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="favicon.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Serif Bengali', serif;
-      background-color: #1a1a1a;
-      color: #f5f5f5;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #222;
-    }
-    .header-left {
-      display: flex;
-      align-items: center;
-    }
-    .header-left img {
-      height: 40px;
-      margin-right: 10px;
-    }
-    .header-left .brand {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .social-icons img {
-      width: 30px;
-      height: 30px;
-      filter: invert(1);
-    }
-    .language-toggle select {
-      padding: 6px;
-    }
-    .banner {
-      width: 100%;
-      height: 300px;
-      background: url('banner.jpg') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 40px;
-      font-weight: bold;
-      color: white;
-      position: relative;
-      text-shadow: 2px 2px 5px black;
-    }
-    .language-toggle {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-    }
-    .tiles {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 30px;
-    }
-    .tile {
-      position: relative;
-      width: 300px;
-      height: 180px;
-      overflow: hidden;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-    .tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    .tile:hover img {
-      transform: scale(1.1);
-    }
-    .tile-title {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 10px;
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-size: 20px;
-      text-align: center;
-      font-weight: bold;
-      text-shadow: 1px 1px 3px black;
-    }
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-    @media (max-width: 768px) {
-      .tile {
-        width: 45%;
-      }
-    }
-    @media (max-width: 480px) {
-      .tile {
-        width: 100%;
-      }
-      .banner {
-        font-size: 24px;
-        height: 200px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="header-left">
-      <img src="logo.png" alt="Logo" />
-      <div class="brand">Golpo Holeo Sotyi</div>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Site Logo" class="site-logo">
+      <span class="logo-text">Golpo Holeo Sotyi</span>
     </div>
-    <div class="header-right">
-      <div class="social-icons">
-        <a href="https://www.youtube.com/c/GolpoHoleoSotyi" target="_blank"><img src="icons/youtube.png" alt="YouTube"></a>
-        <a href="https://www.facebook.com/golpoholeosotyii" target="_blank"><img src="icons/facebook.png" alt="Facebook"></a>
-        <a href="https://www.instagram.com/golpoholeosotyi/" target="_blank"><img src="icons/instagram.png" alt="Instagram"></a>
-      </div>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('bn')">বাংলা</button>
     </div>
+
+    <!-- Menu -->
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home" data-i18n="menu_home">Home</a></li>
+        <li><a href="#explore" data-i18n="menu_explore">Explore</a></li>
+        <li><a href="#catalogue" data-i18n="menu_catalogue">Catalogue</a></li>
+        <li><a href="#reels" data-i18n="menu_reels">Reels</a></li>
+        <li><a href="#series" data-i18n="menu_series">Series</a></li>
+        <li><a href="#books" data-i18n="menu_books">Books</a></li>
+        <li><a href="#programmes" data-i18n="menu_programmes">Programmes</a></li>
+        <li><a href="#about" data-i18n="menu_about">About Us</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="banner">
-    <div id="banner-title">Golpo Holeo Sotyi</div>
-    <div class="language-toggle">
-      <select id="lang-toggle">
-        <option value="en">English</option>
-        <option value="bn">বাংলা</option>
-      </select>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1 data-i18n="hero_title">Explore Kolkata On Foot</h1>
+      <p data-i18n="hero_subtitle">Authentic, immersive walking tours led by passionate locals.</p>
     </div>
-  </div>
+  </section>
 
-  <main class="tiles">
-    <a class="tile" href="map.html">
-      <img src="tiles/map.jpg" alt="Map">
-      <div class="tile-title">Map</div>
-    </a>
-    <a class="tile" href="contents.html">
-      <img src="tiles/contents.jpg" alt="Contents">
-      <div class="tile-title">Contents</div>
-    </a>
-    <a class="tile" href="blogs.html">
-      <img src="tiles/blogs.jpg" alt="Blogs">
-      <div class="tile-title">Blogs</div>
-    </a>
-    <a class="tile" href="books.html">
-      <img src="tiles/books.jpg" alt="Books">
-      <div class="tile-title">Books</div>
-    </a>
-    <a class="tile" href="programmes.html">
-      <img src="tiles/programmes.jpg" alt="Programmes">
-      <div class="tile-title">Programmes</div>
-    </a>
-    <a class="tile" href="about.html">
-      <img src="tiles/about.jpg" alt="About us">
-      <div class="tile-title">About Us</div>
-    </a>
-  </main>
+  <!-- Placeholder Sections -->
+  <section id="explore" class="section">
+    <h2 data-i18n="menu_explore">Explore</h2>
+    <p>Content coming soon...</p>
+  </section>
 
-  <footer>
-    © 2025 Golpo Holeo Sotyi | Created by Sounak Kundu
+  <section id="catalogue" class="section alt-bg">
+    <h2 data-i18n="menu_catalogue">Catalogue</h2>
+    <p>Content coming soon...</p>
+  </section>
+
+  <section id="reels" class="section">
+    <h2 data-i18n="menu_reels">Reels</h2>
+    <p>Content coming soon...</p>
+  </section>
+
+  <section id="series" class="section alt-bg">
+    <h2 data-i18n="menu_series">Series</h2>
+    <p>Content coming soon...</p>
+  </section>
+
+  <section id="books" class="section">
+    <h2 data-i18n="menu_books">Books</h2>
+    <p>Content coming soon...</p>
+  </section>
+
+  <section id="programmes" class="section alt-bg">
+    <h2 data-i18n="menu_programmes">Programmes</h2>
+    <p>Content coming soon...</p>
+  </section>
+
+  <section id="about" class="section">
+    <h2 data-i18n="menu_about">About Us</h2>
+    <p>Content coming soon...</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Golpo Holeo Sotyi. All rights reserved.</p>
   </footer>
 
+  <!-- Language Switch Script -->
   <script>
-    document.getElementById('lang-toggle').addEventListener('change', function () {
-      const banner = document.getElementById('banner-title');
-      if (this.value === 'bn') {
-        banner.textContent = 'গল্প হলেও সত্যি';
-        document.title = 'গল্প হলেও সত্যি';
-      } else {
-        banner.textContent = 'Golpo Holeo Sotyi';
-        document.title = 'Golpo Holeo Sotyi';
+    const translations = {
+      en: {
+        menu_home: "Home",
+        menu_explore: "Explore",
+        menu_catalogue: "Catalogue",
+        menu_reels: "Reels",
+        menu_series: "Series",
+        menu_books: "Books",
+        menu_programmes: "Programmes",
+        menu_about: "About Us",
+        hero_title: "Explore Kolkata On Foot",
+        hero_subtitle: "Authentic, immersive walking tours led by passionate locals."
+      },
+      bn: {
+        menu_home: "প্রথম পাতা",
+        menu_explore: "অন্বেষণ",
+        menu_catalogue: "গল্পের তালিকা",
+        menu_reels: "রিল",
+        menu_series: "সিরিজ",
+        menu_books: "বই",
+        menu_programmes: "অনুষ্ঠান",
+        menu_about: "আমাদের কথা",
+        hero_title: "হেঁটে ঘুরুন কলকাতার পথে",
+        hero_subtitle: "আসল, ডুবসাঁতার ঘুরে বেড়ানো — লোকজন, গল্প, স্বাদে ভরা।"
       }
-    });
+    };
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    }
   </script>
+
 </body>
 </html>

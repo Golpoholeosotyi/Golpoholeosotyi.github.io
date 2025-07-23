@@ -18,7 +18,7 @@
     }
     .bn-text {
       font-family: 'Noto Serif Bengali', serif;
-      font-size: 1.15em;
+      font-size: 1.25em;
     }
     header.navbar {
       background-color: #2d2d2d;
@@ -69,11 +69,13 @@
     .hero {
       text-align: center;
       padding: 5rem 2rem;
-      background: url('images/kolkata-bg.jpg') no-repeat center center/cover;
+      background-size: cover;
+      background-position: center;
       color: #fff;
+      transition: background-image 0.5s ease-in-out;
     }
     .hero h1 {
-      font-size: 3rem;
+      font-size: 4.5rem;
       margin-bottom: 0.5rem;
     }
     .hero p {
@@ -101,7 +103,7 @@
       border-top: 1px solid #444;
     }
     .footer a {
-      margin: 0 0.5rem;
+      margin: 0 0.7rem;
       color: #eee;
       text-decoration: none;
       font-size: 1.5rem;
@@ -111,10 +113,25 @@
     }
     @media (max-width: 600px) {
       .hero h1 {
-        font-size: 2.3rem;
+        font-size: 2.5rem;
       }
       .hero p {
         font-size: 1rem;
+      }
+      nav ul.nav-links {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .site-logo {
+        height: 40px;
+      }
+      header.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .language-toggle {
+        margin-top: 0.5rem;
+        margin-left: 0;
       }
     }
   </style>
@@ -150,7 +167,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="home" class="hero">
+  <section id="home" class="hero" style="background-image: url('images/kolkata-bg.jpg');">
     <div class="hero-text">
       <h1 data-i18n="hero_title" class="bn-text">Golpo Holeo Sotyi</h1>
       <p data-i18n="hero_subtitle">In search of history, hidden mysteries, and true stories</p>
@@ -208,6 +225,17 @@
         }
       });
     }
+
+    const bannerImages = [
+      'images/kolkata-bg.jpg',
+      'images/banner2.jpg',
+      'images/banner3.jpg'
+    ];
+    let currentBanner = 0;
+    setInterval(() => {
+      currentBanner = (currentBanner + 1) % bannerImages.length;
+      document.querySelector('.hero').style.backgroundImage = `url('${bannerImages[currentBanner]}')`;
+    }, 8000);
   </script>
 
 </body>

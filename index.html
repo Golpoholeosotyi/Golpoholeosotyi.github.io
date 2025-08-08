@@ -4,13 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Golpo Holeo Sotyi | অজানা সত্য ঘটনা, ইতিহাস ও ঔপনিবেশিক কলকাতা | Bengali Storytelling Channel</title>
+
+  <!-- SEO Meta -->
   <meta name="description" content="Golpo Holeo Sotyi বাংলায় সত্য ঘটনা, হারিয়ে যাওয়া ইতিহাস ও ঔপনিবেশিক কলকাতার অজানা কাহিনী নিয়ে তৈরি ইউটিউব চ্যানেল ও ওয়েবসাইট।"/>
   <meta name="keywords" content="Golpo Holeo Sotyi, গল্প হলেও সত্যি, কলকাতার ইতিহাস, ব্রিটিশ আমলের গল্প, বাংলা ইউটিউব চ্যানেল, সত্য ঘটনা বাংলায়, ঔপনিবেশিক কলকাতা, Bengali true stories, Colonial Calcutta, Historical Bengal, British Raj Kolkata, East India Company history, Bengali history videos, Bangla storytelling, ইতিহাস ভিত্তিক চ্যানেল, হারিয়ে যাওয়া ইতিহাস"/>
   <meta name="author" content="Sounak Kundu"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Golpo Holeo Sotyi | অজানা সত্য ঘটনা ও ঔপনিবেশিক ইতিহাস">
+  <meta property="og:description" content="বাংলায় ইতিহাসভিত্তিক সত্য ঘটনা ও ঔপনিবেশিক কলকাতার হারিয়ে যাওয়া কাহিনী নিয়ে একটি ইউটিউব চ্যানেল ও ওয়েবসাইট।">
+  <meta property="og:image" content="https://yourdomain.com/images/share-preview.jpg">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Golpo Holeo Sotyi",
+    "url": "https://yourdomain.com",
+    "logo": "https://yourdomain.com/images/logo.png",
+    "sameAs": [
+      "https://www.youtube.com/@GolpoHoleoSotyi",
+      "https://www.facebook.com/golpoholeosotyii",
+      "https://www.instagram.com/golpoholeosotyi/"
+    ]
+  }
+  </script>
+
+  <!-- Favicon and Styles -->
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
     body {
       font-family: 'Merriweather', serif;
@@ -21,7 +50,7 @@
       line-height: 1.6;
     }
     .bn-text {
-      font-family: 'Noto Serif Bengali', serif;
+      font-family: 'Noto Serif Bengali', 'SolaimanLipi', 'Likhan', serif;
       font-size: 1.25em;
     }
     header.navbar {
@@ -115,7 +144,7 @@
       margin: 0 0.7rem;
       color: #eee;
       text-decoration: none;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
     }
     .footer a:hover {
       color: #ddd;
@@ -152,10 +181,8 @@
     <div class="logo-container">
       <img src="images/logo.png" alt="Golpo Holeo Sotyi Logo" class="site-logo">
     </div>
-
-    <!-- Language Toggle Dropdown -->
     <div class="language-toggle">
-      <select onchange="setLanguage(this.value)">
+      <select onchange="setLanguage(this.value)" aria-label="Language Selector">
         <option value="en">English</option>
         <option value="bn">বাংলা</option>
       </select>
@@ -186,13 +213,13 @@
   <footer class="footer">
     <p>&copy; 2025 Golpo Holeo Sotyi. All rights reserved.</p>
     <div>
-      <a href="https://www.youtube.com/@GolpoHoleoSotyi" target="_blank" title="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i><span class="sr-only">YouTube</span></a>
-      <a href="https://www.facebook.com/golpoholeosotyii" target="_blank" title="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
-      <a href="https://www.instagram.com/golpoholeosotyi/" target="_blank" title="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+      <a href="https://www.youtube.com/@GolpoHoleoSotyi" target="_blank" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.facebook.com/golpoholeosotyii" target="_blank" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/golpoholeosotyi/" target="_blank" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
   </footer>
 
-  <!-- Language Switch Script -->
+  <!-- Language Switch & Banner Script -->
   <script>
     const translations = {
       en: {
@@ -218,6 +245,7 @@
     };
 
     function setLanguage(lang) {
+      localStorage.setItem("language", lang);
       const elements = document.querySelectorAll("[data-i18n]");
       elements.forEach(el => {
         const key = el.getAttribute("data-i18n");
@@ -231,6 +259,12 @@
         }
       });
     }
+
+    window.onload = () => {
+      const lang = localStorage.getItem("language") || "en";
+      setLanguage(lang);
+      document.querySelector('.language-toggle select').value = lang;
+    };
 
     const bannerImages = [
       'images/kolkata-bg.jpg',

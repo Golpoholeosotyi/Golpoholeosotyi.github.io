@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://golpoholeosotyi.github.io/</loc></url>
-  <url><loc>https://golpoholeosotyi.github.io/blogs.html</loc></url>
-  <url><loc>https://golpoholeosotyi.github.io/map.html</loc></url>
-  <url><loc>https://golpoholeosotyi.github.io/contents.html</loc></url>
-  <url><loc>https://golpoholeosotyi.github.io/programmes.html</loc></url>
-  <url><loc>https://golpoholeosotyi.github.io/about.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://golpoholeosotyi.github.io/</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://golpoholeosotyi.github.io/explore.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://golpoholeosotyi.github.io/catalogue.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://golpoholeosotyi.github.io/blog.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://golpoholeosotyi.github.io/books.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://golpoholeosotyi.github.io/programmes.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://golpoholeosotyi.github.io/about.html</loc>
+    <lastmod>2025-08-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>

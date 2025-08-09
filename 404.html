@@ -2,130 +2,167 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>404 Not Found | Golpo Holeo Sotyi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 | Golpo Holeo Sotyi</title>
+
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
     body {
-      background-color: #1b1b1b;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Merriweather', serif;
+      background-color: #1f1f1f;
       margin: 0;
       padding: 0;
+      color: #eee;
+      line-height: 1.6;
+    }
+    .bn-text {
+      font-family: 'Noto Serif Bengali', 'SolaimanLipi', serif;
+    }
+    header.navbar {
+      background-color: #2d2d2d;
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
+      padding: 1rem;
+      border-bottom: 1px solid #444;
     }
-    header {
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 5em;
-      color: #ff4c4c;
-    }
-    p {
-      font-size: 1.5em;
-      max-width: 700px;
-      margin: 0 auto 20px auto;
-      color: #cccccc;
-    }
-    a {
-      font-size: 1.2em;
-      color: #00ffcc;
-      text-decoration: none;
-      font-weight: bold;
-      border: 2px solid #00ffcc;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: background 0.3s, color 0.3s;
-    }
-    a:hover {
-      background: #00ffcc;
-      color: #000000;
-    }
-    .lang-toggle {
-      margin: 20px auto;
+    .logo-container {
       display: flex;
-      justify-content: center;
-      gap: 10px;
+      align-items: center;
     }
-    button {
-      background: transparent;
-      border: 1px solid #ccc;
-      color: #ccc;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 1em;
+    .site-logo {
+      height: 50px;
+      margin-right: 10px;
     }
-    button.active {
-      border-color: #00ffcc;
-      color: #00ffcc;
+    .language-toggle select {
+      background-color: #333;
+      color: #eee;
+      border: 1px solid #777;
+      padding: 0.3rem;
+      border-radius: 5px;
     }
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.8em;
-      color: #666;
+    .error-container {
+      text-align: center;
+      padding: 4rem 1rem;
     }
-    .logo {
-      max-width: 180px;
-      margin-bottom: 20px;
+    .error-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
-    #bengaliContent {
-      font-family: 'Noto Serif Bengali', serif;
+    .error-message {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .error-link {
+      display: inline-block;
+      background-color: #444;
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .error-link:hover {
+      background-color: #555;
+      transform: scale(1.05);
+    }
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #222;
+      font-size: 0.9rem;
+      border-top: 1px solid #444;
+    }
+    .footer a {
+      margin: 0 0.7rem;
+      color: #eee;
+      text-decoration: none;
+      font-size: 1.6rem;
+    }
+    .footer a:hover {
+      color: #ddd;
     }
   </style>
 </head>
 <body>
-  <header>
-    <img class="logo" src="https://golpoholeosotyi.github.io/assets/logo.png" alt="Golpo Holeo Sotyi Logo">
-    <h1>404</h1>
 
-    <div class="lang-toggle">
-      <button id="enBtn" class="active">English</button>
-      <button id="bnBtn">বাংলা</button>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="images/logo.png" alt="Golpo Holeo Sotyi Logo" class="site-logo">
     </div>
-
-    <div id="englishContent">
-      <p>Lost in the archives of forgotten tales...</p>
-      <p>The page you seek doesn't exist, or has moved into legend.</p>
-      <a href="https://golpoholeosotyi.github.io/">Return to Homepage</a>
+    <div class="language-toggle">
+      <select onchange="setLanguage(this.value)" aria-label="Language Selector">
+        <option value="en">English</option>
+        <option value="bn">বাংলা</option>
+      </select>
     </div>
-
-    <div id="bengaliContent" style="display: none;">
-      <p>পথিক, তুমি কি পথ হারাইয়াছ? ফিরে চল প্রথম পাতায়</p>
-      <a href="https://golpoholeosotyi.github.io/">প্রথম পাতায় ফিরে যান</a>
-    </div>
-
   </header>
-  <footer>
-    <p>🕰️ <script>document.write(new Date().toISOString())</script> | Golpo Holeo Sotyi</p>
+
+  <!-- 404 Content -->
+  <div class="error-container">
+    <h1 class="error-title" data-i18n="error_title">404</h1>
+    <p class="error-message bn-text" data-i18n="error_message">
+      পথিক, তুমি কি পথ হারাইয়াছ?
+    </p>
+    <a href="index.html" class="error-link bn-text" data-i18n="error_link">
+      ফিরে চল প্রথম পাতায়
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Golpo Holeo Sotyi. All rights reserved.</p>
+    <div>
+      <a href="https://www.youtube.com/@GolpoHoleoSotyi" target="_blank" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.facebook.com/golpoholeosotyii" target="_blank" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/golpoholeosotyi/" target="_blank" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
   </footer>
 
+  <!-- Language Script -->
   <script>
-    const enBtn = document.getElementById("enBtn");
-    const bnBtn = document.getElementById("bnBtn");
-    const englishContent = document.getElementById("englishContent");
-    const bengaliContent = document.getElementById("bengaliContent");
+    const translations = {
+      en: {
+        error_title: "404",
+        error_message: "The way is shut. It was made by those who are Dead, and the Dead keep it, until the time comes.",
+        error_link: "Let's go back home"
+      },
+      bn: {
+        error_title: "৪০৪",
+        error_message: "পথিক, তুমি কি পথ হারাইয়াছ?",
+        error_link: "ফিরে চল প্রথম পাতায়"
+      }
+    };
 
-    enBtn.addEventListener("click", () => {
-      englishContent.style.display = "block";
-      bengaliContent.style.display = "none";
-      enBtn.classList.add("active");
-      bnBtn.classList.remove("active");
-    });
+    function setLanguage(lang) {
+      localStorage.setItem("language", lang);
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+          if (lang === 'bn') {
+            el.classList.add('bn-text');
+          } else {
+            el.classList.remove('bn-text');
+          }
+        }
+      });
+    }
 
-    bnBtn.addEventListener("click", () => {
-      englishContent.style.display = "none";
-      bengaliContent.style.display = "block";
-      enBtn.classList.remove("active");
-      bnBtn.classList.add("active");
-    });
+    window.onload = () => {
+      const lang = localStorage.getItem("language") || "en";
+      setLanguage(lang);
+      document.querySelector('.language-toggle select').value = lang;
+    };
   </script>
+
 </body>
 </html>

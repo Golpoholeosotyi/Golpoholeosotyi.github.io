@@ -31,7 +31,6 @@
     header.navbar {
       background-color: #2d2d2d;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
@@ -45,8 +44,14 @@
       height: 50px;
       margin-right: 10px;
     }
-    .language-toggle {
-      margin-left: auto;
+    nav ul.nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      padding-left: 0;
+      margin: 0;
+      align-items: center;
     }
     .language-toggle select {
       background-color: #333;
@@ -55,16 +60,6 @@
       padding: 0.3rem;
       border-radius: 5px;
       font-size: 0.9rem;
-    }
-    nav ul.nav-links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      padding-left: 0;
-      margin: 1rem 0 0 0;
-      width: 100%;
-      justify-content: center;
     }
     nav ul li a {
       text-decoration: none;
@@ -349,7 +344,7 @@
         filter_all: "All",
         videos_showing: "Showing {count} video(s)",
         loading: "Loading videos...",
-        error_loading: "Error loading videos. Please check if the Excel file exists at 'data/videos.xlsx'",
+        error_loading: "Error loading videos. Please check if the Excel file exists at 'data/GHS_video_list.xlsx'",
         no_results: "No videos found matching your filters."
       },
       bn: {
@@ -366,7 +361,7 @@
         filter_all: "সব",
         videos_showing: "{count}টি ভিডিও দেখানো হচ্ছে",
         loading: "ভিডিও লোড হচ্ছে...",
-        error_loading: "ভিডিও লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে পরীক্ষা করুন যে 'data/videos.xlsx' ফাইলটি আছে কিনা",
+        error_loading: "ভিডিও লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে পরীক্ষা করুন যে 'data/GHS_video_list.xlsx' ফাইলটি আছে কিনা",
         no_results: "আপনার ফিল্টার অনুযায়ী কোনো ভিডিও পাওয়া যায়নি।"
       }
     };

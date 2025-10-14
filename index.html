@@ -56,22 +56,38 @@
     header.navbar {
       background-color: #2d2d2d;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       padding: 1rem;
       border-bottom: 1px solid #444;
+      flex-wrap: nowrap;
     }
     .logo-container {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
     }
     .site-logo {
       height: 50px;
       margin-right: 10px;
     }
+    nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul.nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      padding-left: 0;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+    }
     .language-toggle {
-      margin-left: auto;
+      flex-shrink: 0;
     }
     .language-toggle select {
       background-color: #333;
@@ -80,16 +96,6 @@
       padding: 0.3rem;
       border-radius: 5px;
       font-size: 0.9rem;
-    }
-    nav ul.nav-links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      padding-left: 0;
-      margin: 1rem 0 0 0;
-      width: 100%;
-      justify-content: center;
     }
     nav ul li a {
       text-decoration: none;
@@ -156,20 +162,18 @@
       .hero p {
         font-size: 1rem;
       }
-      nav ul.nav-links {
-        flex-direction: column;
-        gap: 0.8rem;
-      }
-      .site-logo {
-        height: 40px;
-      }
       header.navbar {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1rem;
       }
-      .language-toggle {
-        margin-top: 0.5rem;
-        margin-left: 0;
+      nav ul.nav-links {
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+      }
+      .site-logo {
+        height: 40px;
       }
     }
   </style>
@@ -181,6 +185,16 @@
     <div class="logo-container">
       <img src="images/logo.png" alt="Golpo Holeo Sotyi Logo" class="site-logo">
     </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="explore.html" data-i18n="menu_explore">Explore</a></li>
+        <li><a href="catalogue.html" data-i18n="menu_catalogue">Catalogue</a></li>
+        <li><a href="blog.html" data-i18n="menu_blog">Blogs</a></li>
+        <li><a href="books.html" data-i18n="menu_books">Books</a></li>
+        <li><a href="programmes.html" data-i18n="menu_programmes">Programmes</a></li>
+        <li><a href="about.html" data-i18n="menu_about">About Us</a></li>
+      </ul>
+    </nav>
     <div class="language-toggle">
       <select onchange="setLanguage(this.value)" aria-label="Language Selector">
         <option value="en">English</option>
@@ -188,18 +202,6 @@
       </select>
     </div>
   </header>
-
-  <!-- Menu Navigation -->
-  <nav>
-    <ul class="nav-links">
-      <li><a href="explore.html" data-i18n="menu_explore">Explore</a></li>
-      <li><a href="catalogue.html" data-i18n="menu_catalogue">Catalogue</a></li>
-      <li><a href="blog.html" data-i18n="menu_blog">Blogs</a></li>
-      <li><a href="books.html" data-i18n="menu_books">Books</a></li>
-      <li><a href="programmes.html" data-i18n="menu_programmes">Programmes</a></li>
-      <li><a href="about.html" data-i18n="menu_about">About Us</a></li>
-    </ul>
-  </nav>
 
   <!-- Hero Section -->
   <section id="home" class="hero" style="background-image: url('images/kolkata-bg.jpg');">

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explore Kolkata | Golpo Holeo Sotyi</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Explore historical locations in Kolkata through stories from Golpo Holeo Sotyi"/>
+  <meta name="keywords" content="Kolkata map, Historical Kolkata, Colonial Calcutta locations"/>
+
+  <!-- Favicon and Styles -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Noto+Serif+Bengali&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    body {
+      font-family: 'Merriweather', serif;
+      background-color: #1f1f1f;
+      margin: 0;
+      padding: 0;
+      color: #eee;
+      line-height: 1.6;
+    }
+    .bn-text {
+      font-family: 'Noto Serif Bengali', 'SolaimanLipi', 'Likhan', serif;
+      font-size: 1.25em;
+    }
+    header.navbar {
+      background-color: #2d2d2d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid #444;
+      flex-wrap: nowrap;
+    }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .site-logo {
+      height: 50px;
+      margin-right: 10px;
+    }
+    nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul.nav-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      padding-left: 0;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .language-toggle {
+      flex-shrink: 0;
+    }
+    .language-toggle select {
+      background-color: #333;
+      color: #eee;
+      border: 1px solid #777;
+      padding: 0.3rem;
+      border-radius: 5px;
+      font-size: 0.9rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #eee;
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.2s ease;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      display: inline-block;
+    }
+    nav ul li a:hover {
+      background-color: #444;
+      transform: scale(1.05);
+    }
+    nav ul li a.active {
+      background-color: #555;
+    }
+    .page-header {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+      background-color: #2c2c2c;
+      border-bottom: 2px solid #444;
+    }
+    .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .page-header p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    .map-container {
+      width: 100%;
+      height: calc(100vh - 250px);
+      min-height: 500px;
+      margin: 0;
+      position: relative;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+      background-color: #1a1a1a;
+    }
+    .video-popup {
+      max-width: 280px;
+    }
+    .video-popup-thumbnail {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .video-popup-thumbnail:hover {
+      transform: scale(1.05);
+    }
+    .video-popup-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+      color: #333;
+      line-height: 1.3;
+    }
+    .video-popup-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+    .popup-meta-tag {
+      background-color: #e0e0e0;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.75rem;
+      color: #555;
+    }
+    .leaflet-popup-content-wrapper {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .leaflet-popup-tip {
+      background-color: #fff;
+    }
+    .map-legend {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: rgba(45, 45, 45, 0.95);
+      padding: 1rem;
+      border-radius: 8px;
+      z-index: 1000;
+      border: 1px solid #555;
+      max-width: 250px;
+    }
+    .map-legend h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .map-legend p {
+      margin: 0.3rem 0;
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+    .error {
+      text-align: center;
+      padding: 3rem;
+      font-size: 1.1rem;
+      color: #ff6b6b;
+    }
+    .footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #222;
+      font-size: 0.9rem;
+      border-top: 1px solid #444;
+    }
+    .footer a {
+      margin: 0 0.7rem;
+      color: #eee;
+      text-decoration: none;
+      font-size: 1.6rem;
+    }
+    .footer a:hover {
+      color: #ddd;
+    }
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .map-container {
+        height: calc(100vh - 280px);
+        min-height: 400px;
+      }
+      .map-legend {
+        bottom: 10px;
+        right: 10px;
+        padding: 0.75rem;
+        max-width: 200px;
+      }
+      header.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      nav ul.nav-links {
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+      }
+      .site-logo {
+        height: 40px;
+      }
+    }
+    .custom-marker {
+      background-color: #ff4444;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="images/logo.png" alt="Golpo Holeo Sotyi Logo" class="site-logo">
+      </a>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="explore.html" class="active" data-i18n="menu_explore">Explore</a></li>
+        <li><a href="catalogue.html" data-i18n="menu_catalogue">Catalogue</a></li>
+        <li><a href="blog.html" data-i18n="menu_blog">Blogs</a></li>
+        <li><a href="books.html" data-i18n="menu_books">Books</a></li>
+        <li><a href="programmes.html" data-i18n="menu_programmes">Programmes</a></li>
+        <li><a href="about.html" data-i18n="menu_about">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="language-toggle">
+      <select onchange="setLanguage(this.value)" aria-label="Language Selector">
+        <option value="en">English</option>
+        <option value="bn">বাংলা</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1 data-i18n="explore_title">Explore Historical Kolkata</h1>
+    <p data-i18n="explore_subtitle">Discover stories through locations on the map</p>
+  </section>
+
+  <!-- Loading State -->
+  <div id="loading" class="loading">Loading map and locations...</div>
+
+  <!-- Map Container -->
+  <div id="mapContainer" class="map-container" style="display: none;">
+    <div id="map"></div>
+    <div class="map-legend">
+      <h3 data-i18n="legend_title">Map Guide</h3>
+      <p data-i18n="legend_text">📍 Click on markers to view video stories</p>
+      <p data-i18n="legend_count" id="locationCount"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Golpo Holeo Sotyi. All rights reserved.</p>
+    <div>
+      <a href="https://www.youtube.com/@GolpoHoleoSotyi" target="_blank" title="YouTube" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.facebook.com/golpoholeosotyii" target="_blank" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/golpoholeosotyi/" target="_blank" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const translations = {
+      en: {
+        menu_explore: "Explore",
+        menu_catalogue: "Catalogue",
+        menu_books: "Books",
+        menu_programmes: "Programmes",
+        menu_blog: "Blogs",
+        menu_about: "About Us",
+        explore_title: "Explore Historical Kolkata",
+        explore_subtitle: "Discover stories through locations on the map",
+        legend_title: "Map Guide",
+        legend_text: "📍 Click on markers to view video stories",
+        legend_count: "{count} location(s) marked",
+        loading: "Loading map and locations...",
+        error_loading: "Error loading locations. Please check if the Excel file exists at 'data/GHS_video_list.xlsx'"
+      },
+      bn: {
+        menu_explore: "অন্বেষণ",
+        menu_catalogue: "গল্পের তালিকা",
+        menu_books: "বই",
+        menu_programmes: "অনুষ্ঠান",
+        menu_blog: "খুচরো লেখালিখি",
+        menu_about: "আমাদের সম্পর্কে",
+        explore_title: "ঐতিহাসিক কলকাতা অন্বেষণ করুন",
+        explore_subtitle: "মানচিত্রের মাধ্যমে স্থানের গল্প আবিষ্কার করুন",
+        legend_title: "মানচিত্র নির্দেশিকা",
+        legend_text: "📍 ভিডিও দেখতে মার্কারে ক্লিক করুন",
+        legend_count: "{count}টি স্থান চিহ্নিত",
+        loading: "মানচিত্র ও স্থান লোড হচ্ছে...",
+        error_loading: "স্থান লোড করতে সমস্যা হয়েছে। অনুগ্রহ করে পরীক্ষা করুন যে 'data/GHS_video_list.xlsx' ফাইলটি আছে কিনা"
+      }
+    };
+
+    let currentLang = 'en';
+    let map;
+    let allVideos = [];
+    let locationCoordinates = {};
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+          if (lang === 'bn') {
+            el.classList.add('bn-text');
+          } else {
+            el.classList.remove('bn-text');
+          }
+        }
+      });
+      updateLocationCount();
+    }
+
+    // Predefined coordinates for common Kolkata locations
+    function getLocationCoordinates(location) {
+      const coords = {
+        // Central Kolkata
+        'Kolkata': [22.5726, 88.3639],
+        'Calcutta': [22.5726, 88.3639],
+        'কলকাতা': [22.5726, 88.3639],
+        
+        // Historical areas
+        'Dalhousie Square': [22.5726, 88.3498],
+        'BBD Bagh': [22.5726, 88.3498],
+        'Writers Building': [22.5726, 88.3498],
+        'Fort William': [22.5554, 88.3312],
+        'Victoria Memorial': [22.5448, 88.3426],
+        'Howrah Bridge': [22.5851, 88.3470],
+        'Howrah': [22.5958, 88.2636],
+        
+        // North Kolkata
+        'Jorasanko': [22.5960, 88.3699],
+        'Shobhabazar': [22.5895, 88.3631],
+        'Chitpur': [22.5926, 88.3606],
+        'Bagbazar': [22.5860, 88.3644],
+        'Burrabazar': [22.5766, 88.3606],
+        
+        // South Kolkata
+        'Park Street': [22.5533, 88.3527],
+        'Alipore': [22.5354, 88.3304],
+        'Ballygunge': [22.5322, 88.3653],
+        'Gariahat': [22.5190, 88.3653],
+        'Kalighat': [22.5202, 88.3427],
+        
+        // East Kolkata
+        'Salt Lake': [22.5806, 88.4303],
+        'Rajarhat': [22.6215, 88.4297],
+        
+        // Colonial landmarks
+        'Raj Bhavan': [22.5560, 88.3514],
+        'St. Pauls Cathedral': [22.5448, 88.3509],
+        'Indian Museum': [22.5570, 88.3517],
+        'Marble Palace': [22.5908, 88.3593],
+        'Belvedere Estate': [22.5396, 88.3304],
+        'Metcalfe Hall': [22.5720, 88.3520],
+        'Town Hall': [22.5708, 88.3509],
+        'High Court': [22.5720, 88.3483],
+        'General Post Office': [22.5726, 88.3498],
+        'Clive Street': [22.5593, 88.3492],
+        
+        // Other areas
+        'Esplanade': [22.5645, 88.3475],
+        'Sealdah': [22.5697, 88.3697],
+        'Shyambazar': [22.5983, 88.3706],
+        'College Street': [22.5741, 88.3629]
+      };
+      
+      return coords[location] || null;
+    }
+
+    // Extract YouTube video ID
+    function getYouTubeVideoId(url) {
+      const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+      const match = url.match(regex);
+      return match ? match[1] : null;
+    }
+
+    // Get YouTube thumbnail
+    function getYouTubeThumbnail(videoId) {
+      return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`;
+    }
+
+    // Load Excel file
+    async function loadVideosFromExcel() {
+      try {
+        const response = await fetch('data/GHS_video_list.xlsx');
+        if (!response.ok) {
+          throw new Error('File not found');
+        }
+        const arrayBuffer = await response.arrayBuffer();
+        const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        const data = XLSX.utils.sheet_to_json(firstSheet);
+        
+        allVideos = data.map(row => ({
+          title: row.Title || row.title || '',
+          topic: row.Topic || row.topic || '',
+          type: row.Type || row.type || '',
+          location: row.Location || row.location || row['Geographical Location'] || '',
+          link: row.Link || row.link || row.URL || row.url || ''
+        })).filter(video => video.title && video.link && video.location);
+
+        initializeMap();
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('mapContainer').style.display = 'block';
+      } catch (error) {
+        console.error('Error loading Excel file:', error);
+        document.getElementById('loading').innerHTML = `<div class="error">${translations[currentLang].error_loading}</div>`;
+      }
+    }
+
+    // Initialize map
+    function initializeMap() {
+      // Create map centered on Kolkata
+      map = L.map('map').setView([22.5726, 88.3639], 12);
+
+      // Add tile layer (dark theme)
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        maxZoom: 19
+      }).addTo(map);
+
+      // Group videos by location
+      const videosByLocation = {};
+      allVideos.forEach(video => {
+        if (!videosByLocation[video.location]) {
+          videosByLocation[video.location] = [];
+        }
+        videosByLocation[video.location].push(video);
+      });
+
+      // Add markers for each location
+      let markerCount = 0;
+      Object.keys(videosByLocation).forEach(location => {
+        const coords = getLocationCoordinates(location);
+        if (coords) {
+          markerCount++;
+          const videos = videosByLocation[location];
+          
+          // Create custom icon
+          const icon = L.divIcon({
+            className: 'custom-marker',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10],
+            popupAnchor: [0, -10]
+          });
+
+          // Create marker
+          const marker = L.marker(coords, { icon: icon }).addTo(map);
+
+          // Create popup content
+          let popupContent = `<div class="video-popup">`;
+          videos.forEach(video => {
+            const videoId = getYouTubeVideoId(video.link);
+            const thumbnail = videoId ? getYouTubeThumbnail(videoId) : 'images/default-thumbnail.jpg';
+            
+            popupContent += `
+              <div style="margin-bottom: 1rem;">
+                <img src="${thumbnail}" 
+                     alt="${video.title}" 
+                     class="video-popup-thumbnail"
+                     onclick="window.open('${video.link}', '_blank')"
+                     onerror="this.src='images/default-thumbnail.jpg'">
+                <div class="video-popup-title">${video.title}</div>
+                <div class="video-popup-meta">
+                  ${video.topic ? `<span class="popup-meta-tag">${video.topic}</span>` : ''}
+                  ${video.type ? `<span class="popup-meta-tag">${video.type}</span>` : ''}
+                </div>
+              </div>
+            `;
+          });
+          popupContent += `</div>`;
+
+          marker.bindPopup(popupContent, {
+            maxWidth: 300,
+            className: 'custom-popup'
+          });
+        }
+      });
+
+      updateLocationCount(markerCount);
+    }
+
+    // Update location count
+    function updateLocationCount(count) {
+      if (!count) {
+        count = Object.keys(allVideos.reduce((acc, v) => {
+          if (v.location) acc[v.location] = true;
+          return acc;
+        }, {})).length;
+      }
+      const countText = translations[currentLang].legend_count.replace('{count}', count);
+      const el = document.getElementById('locationCount');
+      if (el) {
+        el.textContent = countText;
+      }
+    }
+
+    // Initialize on page load
+    window.onload = () => {
+      const lang = localStorage.getItem("language") || "en";
+      currentLang = lang;
+      setLanguage(lang);
+      document.querySelector('.language-toggle select').value = lang;
+      loadVideosFromExcel();
+    };
+  </script>
+
+</body>
+</html>

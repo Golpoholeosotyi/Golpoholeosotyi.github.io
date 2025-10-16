@@ -9,104 +9,111 @@
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+4t5rFz+J2zfeCk3uDhT+W8y2FBx7qkG3f2z8gIpk="
+    crossorigin=""
   />
-
+  
+  <!-- Site Styles -->
+  <link rel="stylesheet" href="style.css" />
   <style>
-    html, body {
+    body {
       margin: 0;
-      height: 100%;
-      width: 100%;
+      background-color: #111;
+      color: #eee;
+      font-family: 'Noto Serif Bengali', serif;
     }
+    header, footer {
+      background: #1b1b1b;
+      color: #ddd;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    nav a {
+      color: #ccc;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a:hover { color: #fff; }
     #map {
-      height: 100vh;
       width: 100%;
-    }
-    .popup-thumb {
-      width: 200px;
-      border-radius: 8px;
-      margin-bottom: 6px;
-    }
-    .popup-title {
-      font-weight: bold;
-      margin-bottom: 4px;
+      height: 90vh;
+      border-top: 2px solid #222;
     }
   </style>
 </head>
 
 <body>
+  <header>
+    <h1>Golpo Holeo Sotyi</h1>
+    <nav>
+      <a href="index.html">প্রথম পাতা</a>
+      <a href="explore.html">অন্বেষণ</a>
+      <a href="catalogue.html">গল্পের তালিকা</a>
+      <a href="blog.html">ব্লগ</a>
+      <a href="books.html">বই</a>
+      <a href="programmes.html">অনুষ্ঠান</a>
+      <a href="about.html">আমাদের সম্পর্কে</a>
+    </nav>
+  </header>
+
   <div id="map"></div>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <footer>
+    © 2025 Golpo Holeo Sotyi | All Rights Reserved
+  </footer>
 
-  <!-- SheetJS -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.19.3/dist/xlsx.full.min.js"></script>
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-pF5mH8V1xCfH1DJZXcQ5jQO+6ryKzkY3ULC2vYv3r94="
+    crossorigin=""
+  ></script>
 
   <script>
-    // Initialize the map
+    // Initialize the map centered on Kolkata
     const map = L.map("map").setView([22.5726, 88.3639], 13);
+
+    // Add dark tile layer
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "&copy; OpenStreetMap contributors",
     }).addTo(map);
 
-    // Load Excel via XMLHttpRequest and parse using SheetJS
-    async function loadExcelData() {
-      try {
-        const response = await fetch("data/GHS_video_list.xlsx");
-        const arrayBuffer = await response.arrayBuffer();
-        const data = new Uint8Array(arrayBuffer);
-        const workbook = XLSX.read(data, { type: "array" });
+    // Fetch data from JSON
+    fetch("data/GHS_video_list.json")
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(video => {
+          if (video.Location && video.Location.trim() !== "") {
+            const coords = video.Location
+              .replace(/[°\sNnEe,]+/g, "")
+              .split(/[, ]+/)
+              .filter(Boolean);
+            const lat = parseFloat(coords[0]);
+            const lng = parseFloat(coords[1]);
+            if (!isNaN(lat) && !isNaN(lng)) {
+              const youtubeID = video.Link.split("v=")[1] || "";
+              const thumbnail = youtubeID
+                ? `https://img.youtube.com/vi/${youtubeID}/mqdefault.jpg`
+                : "";
 
-        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-        const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+              const popupContent = `
+                <div style="text-align:center;">
+                  <h3 style="margin:5px 0;">${video.Title}</h3>
+                  <img src="${thumbnail}" alt="thumbnail" width="200" style="border-radius:8px;"><br>
+                  <p style="margin:3px 0;">${video.Topic || ""} | ${video.Type || ""}</p>
+                  <a href="${video.Link}" target="_blank" style="color:#ffd700;">Watch on YouTube</a>
+                </div>
+              `;
 
-        jsonData.forEach((row) => {
-          const title = row["Title"];
-          const topic = row["Topic"];
-          const type = row["Type"];
-          const link = row["Link"];
-          const location = row["Location"];
-
-          if (!location || !link) return;
-
-          // Parse location like "22.5726° N, 88.3498° E"
-          const coords = location
-            .replace(/[^\d.,-]/g, "")
-            .split(",")
-            .map((v) => parseFloat(v.trim()));
-
-          const [lat, lng] = coords;
-          if (isNaN(lat) || isNaN(lng)) return;
-
-          // Extract YouTube thumbnail
-          const videoIdMatch = link.match(
-            /(?:youtube\.com\/.*v=|youtu\.be\/)([A-Za-z0-9_-]+)/
-          );
-          const videoId = videoIdMatch ? videoIdMatch[1] : null;
-          const thumbUrl = videoId
-            ? `https://img.youtube.com/vi/${videoId}/0.jpg`
-            : "";
-
-          // Create marker and popup
-          const popupContent = `
-            <div class="popup-title">${title}</div>
-            <img src="${thumbUrl}" class="popup-thumb" alt="${title}" />
-            <div><strong>${topic}</strong> | ${type}</div>
-            <a href="${link}" target="_blank">🎬 Watch on YouTube</a>
-          `;
-
-          L.marker([lat, lng]).addTo(map).bindPopup(popupContent);
+              L.marker([lat, lng]).addTo(map).bindPopup(popupContent);
+            }
+          }
         });
-
-        console.log("✅ Map loaded with markers:", jsonData.length);
-      } catch (err) {
-        console.error("❌ Error loading Excel file:", err);
-        alert("Could not load map data. Please check your Excel file path.");
-      }
-    }
-
-    loadExcelData();
+      })
+      .catch(error => console.error("Error loading JSON:", error));
   </script>
 </body>
 </html>

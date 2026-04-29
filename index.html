@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golpo Holeo Sotyi – True Stories of Colonial Calcutta</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f0e6cc;
+    --parchment-dark: #e0cfa8;
+    --parchment-deeper: #d4bc8a;
+    --maroon: #7a1a1a;
+    --maroon-light: #9b2222;
+    --maroon-dark: #4a0e0e;
+    --ink: #1a1008;
+    --ink-light: #3a2a18;
+    --sepia: #8b6914;
+    --sepia-light: #c49a3c;
+    --cream: #faf3e0;
+    --dark-footer: #0f0a06;
+    --text-body: #2c1810;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background-color: var(--parchment);
+    color: var(--text-body);
+    overflow-x: hidden;
+  }
+
+  /* TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    background: var(--ink);
+    color: #c9a84c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 40px;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    font-family: 'EB Garamond', serif;
+  }
+  .top-bar-left { display: flex; align-items: center; gap: 10px; }
+  .top-bar-left span { font-size: 11px; opacity: 0.8; }
+  .social-icons { display: flex; gap: 8px; }
+  .social-icons a {
+    width: 22px; height: 22px;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: bold;
+    text-decoration: none; color: white;
+    transition: opacity 0.2s;
+  }
+  .social-icons a:hover { opacity: 0.8; }
+  .social-icons .yt { background: #ff0000; }
+  .social-icons .ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .social-icons .fb { background: #1877f2; }
+  .top-bar-right {
+    font-style: italic;
+    font-size: 12px;
+    color: #c9a84c;
+    font-family: 'Noto Serif Bengali', serif;
+    opacity: 0.9;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    background: var(--cream);
+    border-bottom: 2px solid var(--parchment-deeper);
+    padding: 12px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(90,50,10,0.12);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+
+  .logo-circle {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    border: 2px solid var(--maroon);
+    background: var(--parchment-dark);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .logo-circle svg {
+    width: 55px; height: 55px;
+    opacity: 0.75;
+  }
+
+  .logo-text-wrap { display: flex; flex-direction: column; }
+  .logo-bengali-top {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 13px;
+    color: var(--maroon);
+    line-height: 1.2;
+    font-weight: 600;
+  }
+  .logo-bengali-main {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 26px;
+    color: var(--maroon);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .logo-latin {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--sepia);
+    margin-top: 2px;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    color: var(--ink-light);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 2px;
+    transition: all 0.2s;
+    font-weight: 600;
+  }
+  .nav-links a:hover { color: var(--maroon); background: var(--parchment); }
+  .nav-links .home-icon { font-size: 16px; }
+
+  .nav-cta {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    background: var(--maroon);
+    color: var(--parchment) !important;
+    padding: 9px 20px !important;
+    border-radius: 2px;
+    font-weight: 700;
+  }
+  .nav-cta:hover { background: var(--maroon-dark) !important; color: #f0d890 !important; }
+
+  .nav-search { font-size: 17px; cursor: pointer; color: var(--ink-light); padding: 6px; }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    width: 26px; height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8d5a8 0%, #d4bc8a 40%, #c8aa76 100%);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(240,230,204,0.92) 0%, rgba(240,230,204,0.7) 45%, rgba(200,170,118,0.3) 100%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(139,105,20,0.03) 40px,
+        rgba(139,105,20,0.03) 80px
+      );
+  }
+
+  /* Vintage city silhouette */
+  .hero-city {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 60%;
+    height: 100%;
+    opacity: 0.18;
+    background: linear-gradient(to top, var(--ink) 0%, transparent 60%);
+    /* Stylized placeholder cityscape */
+    background-image:
+      linear-gradient(to top, rgba(26,16,8,0.4) 0%, transparent 50%);
+  }
+
+  /* Decorative map parchment in hero */
+  .hero-map-scroll {
+    position: absolute;
+    top: 20px; right: 40px;
+    width: 280px;
+    background: linear-gradient(135deg, #f5e8c8, #e8d09a);
+    border-radius: 4px 4px 0 0;
+    padding: 20px;
+    box-shadow: 4px 6px 20px rgba(90,50,10,0.25), -1px -1px 0 rgba(90,50,10,0.1);
+    transform: rotate(2deg);
+  }
+  .hero-map-scroll::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    width: 16px; height: 16px;
+    background: radial-gradient(circle, #8b6914, #6b4f10);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .hero-map-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 2px;
+    height: 130px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+  }
+  .hero-map-grid div {
+    border: 0.5px solid rgba(139,105,20,0.4);
+    background: rgba(139,105,20,0.05);
+  }
+  .hero-map-grid div:nth-child(3n) { background: rgba(139,105,20,0.12); }
+  .hero-map-grid div:nth-child(5n) { background: rgba(139,105,20,0.08); }
+  .hero-scroll-text {
+    font-family: 'Noto Serif Bengali', serif;
+    font-size: 13px;
+    color: var(--maroon);
+    line-height: 1.7;
+    text-align: right;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 40px;
+    max-width: 520px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .hero-title .accent { color: var(--maroon); }
+
+  .hero-ornament {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0;
+    opacity: 0.5;
+  }
+  .hero-ornament::before, .hero-ornament::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--maroon);
+  }
+  .hero-ornament-icon { color: var(--maroon); font-size: 14px; }
+
+  .hero-sub {
+    font-family: 'EB Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--maroon);
+    color: var(--parchment);
+    font-family: 'Cinzel', serif;
+    font-size: 11.5px;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 3px 3px 0 var(--maroon-dark);
+  }
+  .btn-primary:hover {
+    background: var(--maroon-dark);
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--maroon-dark);
+    color: #f0d890;
+  }
+  .btn-compass { font-size: 16px; }
+
+  /* ── SECTION CARDS ── */
+  .section-cards {
+    background: var(--parchment);
+    padding: 50px 40px;
+    border-top: 3px solid var(--parchment-deeper);
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-card {
+    background: var(--cream);
+    border: 1px solid var(--parchment-deeper);
+    border-radius: 4px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s;
+    box-shadow: 2px 2px 8px rgba(90,50,10,0.08);
+    display: flex;
+    flex-direction: column;
+  }
+  .section-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 4px 8px 24px rgba(90,50,10,0.18);
+    border-color: var(--maroon);
+  }
+
+  .card-img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Placeholder card images */
+  .card-img-placeholder {
+    width: 100%;
+    height: 130px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img-placeholder.map-bg {
+    background: linear-gradient(135deg, #d4c090, #c4a870);
+  }
+  .card-img-placeholder.catalogue-bg {
+    background: linear-gradient(135deg, #c8b080, #b89860);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    padding: 2px;
+  }
+  .catalogue-thumb {
+    background: linear-gradient(135deg, #a89060, #988050);
+    border-radius: 1px;
+  }
+  .card-img-placeholder.blog-bg {
+    background: linear-gradient(135deg, #c8b080, #b89860);
+  }
+  .card-img-placeholder.events-bg {
+    background: linear-gradient(135deg, #b8a070, #a89060);
+  }
+  .card-img-placeholder.books-bg {
+    background: linear-gradient(135deg, #c0a870, #b09060);
+  }
+  .card-img-placeholder.about-bg {
+    background: linear-gradient(135deg, #b8a878, #a89868);
+  }
+
+  .card-icon-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    width: 32px; height: 32px;
+    background: var(--maroon);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--parchment);
+    font-size: 14px;
+    z-index: 2;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  .card-body {
+    padding: 14px 16px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-family: 'EB Garamond', serif;
+    font-size: 13.5px;
+    color: var(--ink-light);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    color: var(--maroon);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .card-link::after { content: '→'; transition: margin 0.2s; }
+  .section-card:hover .card-link::after { margin-left: 4px; }
+
+  /* Map placeholder */
+  .map-placeholder-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 0.3;
+  }
+  .map-grid-inner {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    width: 100%; height: 100%;
+    gap: 1px;
+  }
+  .map-grid-inner div { border: 0.5px solid rgba(139,105,20,0.5); }
+  .map-pin {
+    position: absolute;
+    font-size: 14px;
+    color: var(--maroon);
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
+  }
+
+  /* ── STATS ── */
+  .stats-bar {
+    background: linear-gradient(to right, #e8d5a8, #d4bc8a, #c8aa76, #d4bc8a, #e8d5a8);
+    border-top: 2px solid var(--parchment-deeper);
+    border-bottom: 2px solid var(--parchment-deeper);
+    padding: 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stats-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='rgba(139,105,20,0.06)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 80px 80px;
+  }
+
+  /* Decorative Howrah Bridge silhouette */
+  .stats-backdrop {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    opacity: 0.07;
+    background:
+      linear-gradient(to top, var(--ink) 0%, transparent 70%);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 10px;
+  }
+  .stat-icon {
+    font-size: 26px;
+    color: var(--maroon);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: var(--sepia);
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+  }
+  .stat-divider {
+    width: 1px;
+    background: rgba(139,105,20,0.3);
+    align-self: stretch;
+    margin: 10px 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark-footer);
+    color: #c9a84c;
+    padding: 50px 40px 20px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .footer-brand .logo-bengali-top,
+  .footer-brand .logo-bengali-main {
+    color: #c9a84c;
+  }
+  .footer-brand .logo-latin { color: rgba(201,168,76,0.6); }
+  .footer-brand .logo-circle {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .footer-tagline {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: rgba(201,168,76,0.7);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  .footer-col-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(201,168,76,0.5);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: rgba(201,168,76,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: #c9a84c; }
+
+  .footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer-social-icons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .footer-social-icons a {
+    width: 32px; height: 32px;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: bold;
+    text-decoration: none; color: white;
+    transition: opacity 0.2s;
+  }
+  .footer-social-icons a:hover { opacity: 0.8; }
+  .footer-social-icons .yt { background: #ff0000; }
+  .footer-social-icons .ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+  .footer-social-icons .fb { background: #1877f2; }
+  .footer-handle {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: rgba(201,168,76,0.6);
+    font-style: italic;
+  }
+
+  .footer-newsletter { display: flex; flex-direction: column; gap: 10px; }
+  .newsletter-desc {
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: rgba(201,168,76,0.6);
+    line-height: 1.5;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+  }
+  .newsletter-form input {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-right: none;
+    color: #c9a84c;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    padding: 10px 14px;
+    outline: none;
+    border-radius: 2px 0 0 2px;
+  }
+  .newsletter-form input::placeholder { color: rgba(201,168,76,0.3); }
+  .newsletter-form button {
+    background: var(--maroon);
+    border: none;
+    color: var(--parchment);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .newsletter-form button:hover { background: var(--maroon-dark); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'EB Garamond', serif;
+    font-size: 12.5px;
+    color: rgba(201,168,76,0.4);
+  }
+  .footer-heart { color: var(--maroon); }
+
+  /* ══════════════════════════════
+     MOBILE RESPONSIVE
+  ══════════════════════════════ */
+  @media (max-width: 768px) {
+    .top-bar { padding: 6px 16px; }
+    .top-bar-right { display: none; }
+
+    nav { padding: 10px 16px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-search { display: none; }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--cream);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--parchment-deeper);
+      width: 200px;
+      text-align: center;
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--ink);
+      background: none;
+      border: none;
+    }
+
+    .hero { min-height: auto; }
+    .hero-map-scroll { display: none; }
+    .hero-content { padding: 40px 20px 50px; max-width: 100%; }
+    .hero-title { font-size: 34px; }
+    .hero-sub { font-size: 16px; }
+
+    .section-cards { padding: 30px 16px; }
+    .cards-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .stats-bar { padding: 30px 16px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .stat-number { font-size: 30px; }
+
+    footer { padding: 40px 16px 20px; }
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .cards-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-content > * {
+    animation: fadeInUp 0.7s ease forwards;
+    opacity: 0;
+  }
+  .hero-title { animation-delay: 0.1s; }
+  .hero-ornament { animation-delay: 0.25s; }
+  .hero-sub { animation-delay: 0.35s; }
+  .btn-primary { animation-delay: 0.5s; }
+
+  .section-card {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+  }
+  .section-card:nth-child(1) { animation-delay: 0.05s; }
+  .section-card:nth-child(2) { animation-delay: 0.12s; }
+  .section-card:nth-child(3) { animation-delay: 0.19s; }
+  .section-card:nth-child(4) { animation-delay: 0.26s; }
+  .section-card:nth-child(5) { animation-delay: 0.33s; }
+  .section-card:nth-child(6) { animation-delay: 0.4s; }
+
+  /* Ornamental divider */
+  .ornament-divider {
+    text-align: center;
+    color: var(--sepia-light);
+    font-size: 18px;
+    letter-spacing: 8px;
+    opacity: 0.5;
+    padding: 6px 0 20px;
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <span>Follow us on</span>
+    <div class="social-icons">
+      <a href="#" class="yt" title="YouTube">▶</a>
+      <a href="#" class="ig" title="Instagram">◈</a>
+      <a href="#" class="fb" title="Facebook">f</a>
+    </div>
+  </div>
+  <div class="top-bar-right">"গল্প হলেও সত্যি, ইতিহাসের পাতায় লেখা আমাদের শহর কলকাতা"</div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-circle">
+      <!-- Placeholder SVG cityscape logo -->
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="38" fill="none" stroke="#7a1a1a" stroke-width="1.5"/>
+        <!-- Howrah Bridge simplified -->
+        <line x1="8" y1="55" x2="72" y2="55" stroke="#7a1a1a" stroke-width="1.2"/>
+        <line x1="20" y1="55" x2="20" y2="38" stroke="#7a1a1a" stroke-width="0.8"/>
+        <line x1="60" y1="55" x2="60" y2="38" stroke="#7a1a1a" stroke-width="0.8"/>
+        <path d="M20 38 Q40 25 60 38" stroke="#7a1a1a" stroke-width="1" fill="none"/>
+        <line x1="20" y1="38" x2="8" y2="55" stroke="#7a1a1a" stroke-width="0.6"/>
+        <line x1="60" y1="38" x2="72" y2="55" stroke="#7a1a1a" stroke-width="0.6"/>
+        <!-- Cathedral spire -->
+        <rect x="34" y="30" width="12" height="20" fill="none" stroke="#7a1a1a" stroke-width="0.8"/>
+        <polygon points="34,30 40,18 46,30" fill="none" stroke="#7a1a1a" stroke-width="0.8"/>
+        <!-- Lamp post -->
+        <line x1="16" y1="55" x2="16" y2="35" stroke="#7a1a1a" stroke-width="1"/>
+        <circle cx="16" cy="33" r="3" fill="none" stroke="#7a1a1a" stroke-width="0.8"/>
+        <line x1="13" y1="33" x2="19" y2="33" stroke="#7a1a1a" stroke-width="0.6"/>
+      </svg>
+    </div>
+    <div class="logo-text-wrap">
+      <span class="logo-bengali-top">গল্প হলেও</span>
+      <span class="logo-bengali-main">সত্যি</span>
+      <span class="logo-latin">GOLPO HOLEO SOTYI</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#" class="home-icon">⌂</a></li>
+    <li><a href="#explore">EXPLORE</a></li>
+    <li><a href="#catalogue">CATALOGUE</a></li>
+    <li><a href="#blogs">BLOGS</a></li>
+    <li><a href="#events">EVENTS</a></li>
+    <li><a href="#books">BOOKS</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><span class="nav-search">🔍</span></li>
+    <li><a href="#contact" class="nav-links nav-cta">CONTACT</a></li>
+  </ul>
+
+  <div class="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
+  <a href="#" onclick="toggleMobileNav()">⌂ HOME</a>
+  <a href="#explore" onclick="toggleMobileNav()">EXPLORE</a>
+  <a href="#catalogue" onclick="toggleMobileNav()">CATALOGUE</a>
+  <a href="#blogs" onclick="toggleMobileNav()">BLOGS</a>
+  <a href="#events" onclick="toggleMobileNav()">EVENTS</a>
+  <a href="#books" onclick="toggleMobileNav()">BOOKS</a>
+  <a href="#about" onclick="toggleMobileNav()">ABOUT</a>
+  <a href="#contact" onclick="toggleMobileNav()">CONTACT</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Sepia city silhouette placeholder -->
+  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
+    <svg style="position:absolute;bottom:0;right:0;width:65%;height:100%;opacity:0.13;" viewBox="0 0 600 300" preserveAspectRatio="xMaxYMax meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Stylized Calcutta skyline silhouette -->
+      <rect x="0" y="200" width="600" height="100" fill="#1a1008"/>
+      <!-- Victoria Memorial dome -->
+      <rect x="220" y="120" width="60" height="80" fill="#1a1008"/>
+      <ellipse cx="250" cy="120" rx="35" ry="25" fill="#1a1008"/>
+      <polygon points="250,80 258,120 242,120" fill="#1a1008"/>
+      <!-- Church spire -->
+      <rect x="340" y="140" width="30" height="60" fill="#1a1008"/>
+      <polygon points="355,105 370,140 340,140" fill="#1a1008"/>
+      <!-- Buildings -->
+      <rect x="100" y="160" width="50" height="40" fill="#1a1008"/>
+      <rect x="155" y="170" width="35" height="30" fill="#1a1008"/>
+      <rect x="390" y="150" width="45" height="50" fill="#1a1008"/>
+      <rect x="440" y="165" width="30" height="35" fill="#1a1008"/>
+      <rect x="475" y="155" width="40" height="45" fill="#1a1008"/>
+      <rect x="520" y="170" width="80" height="30" fill="#1a1008"/>
+      <rect x="50" y="175" width="40" height="25" fill="#1a1008"/>
+      <!-- Howrah Bridge cables -->
+      <line x1="0" y1="200" x2="600" y2="200" stroke="#1a1008" stroke-width="2"/>
+      <path d="M 30 200 Q 150 130 280 150 Q 350 160 420 140 Q 500 120 580 180" stroke="#1a1008" stroke-width="1.5" fill="none"/>
+      <!-- Water reflection -->
+      <rect x="0" y="220" width="600" height="80" fill="#1a1008" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <!-- Map scroll -->
+  <div class="hero-map-scroll">
+    <div class="hero-map-grid">
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+    <!-- Map pins -->
+    <div style="position:absolute;top:20px;left:30px;font-size:16px;color:#7a1a1a;">📍</div>
+    <div style="position:absolute;top:45px;left:70px;font-size:13px;color:#7a1a1a;">📍</div>
+    <div style="position:absolute;top:35px;left:120px;font-size:15px;color:#7a1a1a;">📍</div>
+    <div style="position:absolute;top:70px;left:50px;font-size:12px;color:#7a1a1a;">📍</div>
+    <div style="position:absolute;top:80px;left:160px;font-size:14px;color:#7a1a1a;">📍</div>
+    <div class="hero-scroll-text">
+      ইতিহাসের অলিতে<br>
+      গলিতে লুকিয়ে আছে<br>
+      অসংখ্য গল্প...<br>
+      চলুন খুঁজে দেখি<br>
+      সে গল্পগুলোকে
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Explore True Stories<br>of Colonial <span class="accent">Calcutta</span>
+    </h1>
+    <div class="hero-ornament">
+      <span class="hero-ornament-icon">❧</span>
+    </div>
+    <p class="hero-sub">
+      Places hold stories.<br>Stories make history.
+    </p>
+    <a href="#explore" class="btn-primary">
+      <span class="btn-compass">✦</span>
+      EXPLORE THE MAP
+    </a>
+  </div>
+</section>
+
+<!-- SECTION CARDS -->
+<section class="section-cards" id="explore">
+  <div class="ornament-divider">· · · ✦ · · ·</div>
+  <div class="cards-grid">
+
+    <!-- EXPLORE -->
+    <a href="#explore" class="section-card">
+      <div class="card-img-placeholder map-bg">
+        <div class="map-grid-inner">
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+        <div style="position:absolute;top:20px;left:25px;font-size:16px;color:#7a1a1a;">📍</div>
+        <div style="position:absolute;top:50px;left:90px;font-size:14px;color:#7a1a1a;">📍</div>
+        <div style="position:absolute;top:30px;left:140px;font-size:15px;color:#7a1a1a;">📍</div>
+        <div style="position:absolute;top:70px;left:60px;font-size:13px;color:#7a1a1a;">📍</div>
+        <div style="position:absolute;top:80px;left:170px;font-size:12px;color:#7a1a1a;">📍</div>
+        <div class="card-icon-badge">📍</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">EXPLORE</div>
+        <p class="card-desc">Discover stories tied to real locations on an interactive map of colonial Calcutta.</p>
+        <span class="card-link">Explore Now </span>
+      </div>
+    </a>
+
+    <!-- CATALOGUE -->
+    <a href="#catalogue" class="section-card" id="catalogue">
+      <div class="card-img-placeholder catalogue-bg">
+        <div class="catalogue-thumb"></div>
+        <div class="catalogue-thumb"></div>
+        <div class="catalogue-thumb" style="background:linear-gradient(135deg,#988050,#887040);"></div>
+        <div class="catalogue-thumb" style="background:linear-gradient(135deg,#a89060,#987050);"></div>
+        <div class="card-icon-badge" style="top:8px;left:8px;">📖</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">CATALOGUE</div>
+        <p class="card-desc">Browse all videos by categories, locations, themes and historical personalities.</p>
+        <span class="card-link">Browse Videos </span>
+      </div>
+    </a>
+
+    <!-- BLOGS -->
+    <a href="#blogs" class="section-card" id="blogs">
+      <div class="card-img-placeholder blog-bg" style="background:linear-gradient(135deg,#c8b080,#b89860);align-items:center;justify-content:center;">
+        <div style="font-size:50px;opacity:0.35;">✒</div>
+        <div class="card-icon-badge">✍</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">BLOGS</div>
+        <p class="card-desc">Read detailed blogs, articles and photo stories from the pages of history.</p>
+        <span class="card-link">Read Blogs </span>
+      </div>
+    </a>
+
+    <!-- EVENTS -->
+    <a href="#events" class="section-card" id="events">
+      <div class="card-img-placeholder events-bg" style="background:linear-gradient(135deg,#b8a878,#a89060);align-items:center;justify-content:center;">
+        <!-- Victoria Memorial simplified -->
+        <svg width="110" height="80" viewBox="0 0 110 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.5;">
+          <rect x="15" y="35" width="80" height="35" fill="#7a1a1a"/>
+          <ellipse cx="55" cy="35" rx="25" ry="18" fill="#7a1a1a"/>
+          <line x1="55" y1="17" x2="55" y2="5" stroke="#7a1a1a" stroke-width="2"/>
+          <circle cx="55" cy="4" r="2" fill="#7a1a1a"/>
+        </svg>
+        <div class="card-icon-badge">📅</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">EVENTS</div>
+        <p class="card-desc">Join our heritage walks, talks and special events. Be a part of the experience.</p>
+        <span class="card-link">View Events </span>
+      </div>
+    </a>
+
+    <!-- BOOKS -->
+    <a href="#books" class="section-card" id="books">
+      <div class="card-img-placeholder books-bg" style="align-items:center;justify-content:center;background:linear-gradient(135deg,#c0a870,#a08050);">
+        <div style="display:flex;gap:6px;align-items:flex-end;">
+          <div style="width:36px;height:65px;background:var(--maroon);border-radius:2px 4px 4px 2px;display:flex;align-items:center;justify-content:center;color:#f0d890;font-family:'Noto Serif Bengali',serif;font-size:8px;writing-mode:vertical-rl;text-align:center;padding:4px;line-height:1.2;opacity:0.9;">গল্প হলেও সত্যি</div>
+          <div style="width:32px;height:55px;background:#5a3010;border-radius:2px 4px 4px 2px;opacity:0.7;"></div>
+          <div style="width:28px;height:48px;background:#7a5030;border-radius:2px 4px 4px 2px;opacity:0.6;"></div>
+        </div>
+        <div class="card-icon-badge">📚</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">BOOKS</div>
+        <p class="card-desc">Explore books on history and Kolkata. Available on major online platforms.</p>
+        <span class="card-link">View Books </span>
+      </div>
+    </a>
+
+    <!-- ABOUT -->
+    <a href="#about" class="section-card" id="about">
+      <div class="card-img-placeholder about-bg" style="align-items:center;justify-content:center;">
+        <!-- Tram simplified -->
+        <svg width="120" height="70" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.5;">
+          <rect x="10" y="25" width="90" height="30" rx="4" fill="#7a1a1a"/>
+          <rect x="15" y="30" width="15" height="12" rx="1" fill="#f0e6cc" opacity="0.5"/>
+          <rect x="33" y="30" width="15" height="12" rx="1" fill="#f0e6cc" opacity="0.5"/>
+          <rect x="51" y="30" width="15" height="12" rx="1" fill="#f0e6cc" opacity="0.5"/>
+          <rect x="69" y="30" width="15" height="12" rx="1" fill="#f0e6cc" opacity="0.5"/>
+          <circle cx="30" cy="58" r="7" fill="#5a3010"/>
+          <circle cx="80" cy="58" r="7" fill="#5a3010"/>
+          <line x1="0" y1="65" x2="120" y2="65" stroke="#7a1a1a" stroke-width="1.5"/>
+        </svg>
+        <div class="card-icon-badge">ℹ</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">ABOUT</div>
+        <p class="card-desc">Know more about Golpo Holeo Sotyi and the stories behind the mission.</p>
+        <span class="card-link">Know More </span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-backdrop"></div>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <span class="stat-icon">▶</span>
+      <div class="stat-number">150+</div>
+      <div class="stat-label">Videos</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">📍</span>
+      <div class="stat-number">100+</div>
+      <div class="stat-label">Historical Locations</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">📖</span>
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Blogs & Articles</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-icon">👥</span>
+      <div class="stat-number">10K+</div>
+      <div class="stat-label">Community</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+
+    <div class="footer-brand">
+      <div class="logo">
+        <div class="logo-circle" style="border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.05);">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.5;">
+            <circle cx="40" cy="40" r="38" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+            <line x1="8" y1="55" x2="72" y2="55" stroke="#c9a84c" stroke-width="1.2"/>
+            <line x1="20" y1="55" x2="20" y2="38" stroke="#c9a84c" stroke-width="0.8"/>
+            <line x1="60" y1="55" x2="60" y2="38" stroke="#c9a84c" stroke-width="0.8"/>
+            <path d="M20 38 Q40 25 60 38" stroke="#c9a84c" stroke-width="1" fill="none"/>
+            <line x1="20" y1="38" x2="8" y2="55" stroke="#c9a84c" stroke-width="0.6"/>
+            <line x1="60" y1="38" x2="72" y2="55" stroke="#c9a84c" stroke-width="0.6"/>
+            <rect x="34" y="30" width="12" height="20" fill="none" stroke="#c9a84c" stroke-width="0.8"/>
+            <polygon points="34,30 40,18 46,30" fill="none" stroke="#c9a84c" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-bengali-top">গল্প হলেও</span>
+          <span class="logo-bengali-main">সত্যি</span>
+          <span class="logo-latin">GOLPO HOLEO SOTYI</span>
+        </div>
+      </div>
+      <p class="footer-tagline">Bringing to life the true stories of our city, our people and our past.</p>
+    </div>
+
+    <div>
+      <div class="footer-col-title">QUICK LINKS</div>
+      <ul class="footer-links">
+        <li><a href="#explore">Explore</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#catalogue">Catalogue</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#blogs">Blogs</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <div class="footer-col-title">FOLLOW US</div>
+      <div class="footer-social-icons">
+        <a href="#" class="yt" title="YouTube">▶</a>
+        <a href="#" class="ig" title="Instagram">◈</a>
+        <a href="#" class="fb" title="Facebook">f</a>
+      </div>
+      <div class="footer-handle">/ GolpoHoleoSotyi</div>
+    </div>
+
+    <div class="footer-newsletter">
+      <div class="footer-col-title">NEWSLETTER</div>
+      <p class="newsletter-desc">Subscribe to get updates on new stories, events and heritage walks.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Your email address">
+        <button>SUBSCRIBE</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2024 Golpo Holeo Sotyi. All Rights Reserved.</span>
+    <span>Designed with <span class="footer-heart">♥</span> for history lovers.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileNav').classList.contains('open') ? 'hidden' : '';
+  }
+</script>
+
+</body>
+</html>

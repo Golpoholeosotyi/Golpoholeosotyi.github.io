@@ -194,21 +194,13 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(135deg, #e8d5a8 0%, #d4bc8a 40%, #c8aa76 100%);
+    background: url('images/hero-bg.jpg') center center / cover no-repeat;
   }
 
   .hero-bg {
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(to right, rgba(240,230,204,0.92) 0%, rgba(240,230,204,0.7) 45%, rgba(200,170,118,0.3) 100%),
-      repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 40px,
-        rgba(139,105,20,0.03) 40px,
-        rgba(139,105,20,0.03) 80px
-      );
+    background: linear-gradient(to right, rgba(240,230,204,0.92) 0%, rgba(240,230,204,0.75) 45%, rgba(200,170,118,0.25) 100%);
   }
 
   /* Vintage city silhouette */
@@ -823,25 +815,8 @@
 <!-- NAVBAR -->
 <nav>
   <a href="#" class="logo">
-    <div class="logo-circle">
-      <!-- Placeholder SVG cityscape logo -->
-      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="38" fill="none" stroke="#7a1a1a" stroke-width="1.5"/>
-        <!-- Howrah Bridge simplified -->
-        <line x1="8" y1="55" x2="72" y2="55" stroke="#7a1a1a" stroke-width="1.2"/>
-        <line x1="20" y1="55" x2="20" y2="38" stroke="#7a1a1a" stroke-width="0.8"/>
-        <line x1="60" y1="55" x2="60" y2="38" stroke="#7a1a1a" stroke-width="0.8"/>
-        <path d="M20 38 Q40 25 60 38" stroke="#7a1a1a" stroke-width="1" fill="none"/>
-        <line x1="20" y1="38" x2="8" y2="55" stroke="#7a1a1a" stroke-width="0.6"/>
-        <line x1="60" y1="38" x2="72" y2="55" stroke="#7a1a1a" stroke-width="0.6"/>
-        <!-- Cathedral spire -->
-        <rect x="34" y="30" width="12" height="20" fill="none" stroke="#7a1a1a" stroke-width="0.8"/>
-        <polygon points="34,30 40,18 46,30" fill="none" stroke="#7a1a1a" stroke-width="0.8"/>
-        <!-- Lamp post -->
-        <line x1="16" y1="55" x2="16" y2="35" stroke="#7a1a1a" stroke-width="1"/>
-        <circle cx="16" cy="33" r="3" fill="none" stroke="#7a1a1a" stroke-width="0.8"/>
-        <line x1="13" y1="33" x2="19" y2="33" stroke="#7a1a1a" stroke-width="0.6"/>
-      </svg>
+    <div class="logo-circle" style="background:none;border:none;">
+      <img src="images/logo-dark.png" alt="Golpo Holeo Sotyi Logo" style="width:70px;height:70px;object-fit:contain;border-radius:50%;">
     </div>
     <div class="logo-text-wrap">
       <span class="logo-bengali-top">গল্প হলেও</span>
@@ -884,49 +859,11 @@
 <section class="hero">
   <div class="hero-bg"></div>
 
-  <!-- Sepia city silhouette placeholder -->
-  <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
-    <svg style="position:absolute;bottom:0;right:0;width:65%;height:100%;opacity:0.13;" viewBox="0 0 600 300" preserveAspectRatio="xMaxYMax meet" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Stylized Calcutta skyline silhouette -->
-      <rect x="0" y="200" width="600" height="100" fill="#1a1008"/>
-      <!-- Victoria Memorial dome -->
-      <rect x="220" y="120" width="60" height="80" fill="#1a1008"/>
-      <ellipse cx="250" cy="120" rx="35" ry="25" fill="#1a1008"/>
-      <polygon points="250,80 258,120 242,120" fill="#1a1008"/>
-      <!-- Church spire -->
-      <rect x="340" y="140" width="30" height="60" fill="#1a1008"/>
-      <polygon points="355,105 370,140 340,140" fill="#1a1008"/>
-      <!-- Buildings -->
-      <rect x="100" y="160" width="50" height="40" fill="#1a1008"/>
-      <rect x="155" y="170" width="35" height="30" fill="#1a1008"/>
-      <rect x="390" y="150" width="45" height="50" fill="#1a1008"/>
-      <rect x="440" y="165" width="30" height="35" fill="#1a1008"/>
-      <rect x="475" y="155" width="40" height="45" fill="#1a1008"/>
-      <rect x="520" y="170" width="80" height="30" fill="#1a1008"/>
-      <rect x="50" y="175" width="40" height="25" fill="#1a1008"/>
-      <!-- Howrah Bridge cables -->
-      <line x1="0" y1="200" x2="600" y2="200" stroke="#1a1008" stroke-width="2"/>
-      <path d="M 30 200 Q 150 130 280 150 Q 350 160 420 140 Q 500 120 580 180" stroke="#1a1008" stroke-width="1.5" fill="none"/>
-      <!-- Water reflection -->
-      <rect x="0" y="220" width="600" height="80" fill="#1a1008" opacity="0.4"/>
-    </svg>
-  </div>
+  <!-- Hero bg image handles the visual -->
 
   <!-- Map scroll -->
   <div class="hero-map-scroll">
-    <div class="hero-map-grid">
-      <div></div><div></div><div></div><div></div><div></div><div></div>
-      <div></div><div></div><div></div><div></div><div></div><div></div>
-      <div></div><div></div><div></div><div></div><div></div><div></div>
-      <div></div><div></div><div></div><div></div><div></div><div></div>
-      <div></div><div></div><div></div><div></div><div></div><div></div>
-    </div>
-    <!-- Map pins -->
-    <div style="position:absolute;top:20px;left:30px;font-size:16px;color:#7a1a1a;">📍</div>
-    <div style="position:absolute;top:45px;left:70px;font-size:13px;color:#7a1a1a;">📍</div>
-    <div style="position:absolute;top:35px;left:120px;font-size:15px;color:#7a1a1a;">📍</div>
-    <div style="position:absolute;top:70px;left:50px;font-size:12px;color:#7a1a1a;">📍</div>
-    <div style="position:absolute;top:80px;left:160px;font-size:14px;color:#7a1a1a;">📍</div>
+    <img src="images/hero-scroll.jpg" alt="Old Calcutta Map" style="width:100%;height:160px;object-fit:cover;border-radius:2px;margin-bottom:12px;opacity:0.9;">
     <div class="hero-scroll-text">
       ইতিহাসের অলিতে<br>
       গলিতে লুকিয়ে আছে<br>
@@ -960,20 +897,8 @@
 
     <!-- EXPLORE -->
     <a href="#explore" class="section-card">
-      <div class="card-img-placeholder map-bg">
-        <div class="map-grid-inner">
-          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-        </div>
-        <div style="position:absolute;top:20px;left:25px;font-size:16px;color:#7a1a1a;">📍</div>
-        <div style="position:absolute;top:50px;left:90px;font-size:14px;color:#7a1a1a;">📍</div>
-        <div style="position:absolute;top:30px;left:140px;font-size:15px;color:#7a1a1a;">📍</div>
-        <div style="position:absolute;top:70px;left:60px;font-size:13px;color:#7a1a1a;">📍</div>
-        <div style="position:absolute;top:80px;left:170px;font-size:12px;color:#7a1a1a;">📍</div>
+      <div class="card-img-placeholder map-bg" style="padding:0;overflow:hidden;">
+        <img src="images/card-explore.jpg" alt="Explore Map" style="width:100%;height:130px;object-fit:cover;display:block;">
         <div class="card-icon-badge">📍</div>
       </div>
       <div class="card-body">

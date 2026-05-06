@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Books – Golpo Holeo Sotyi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --parchment: #f0e6cc;
+  --parchment-dark: #e0cfa8;
+  --parchment-deeper: #d4bc8a;
+  --maroon: #7a1a1a;
+  --maroon-light: #9b2222;
+  --maroon-dark: #4a0e0e;
+  --ink: #1a1008;
+  --ink-light: #3a2a18;
+  --sepia: #8b6914;
+  --sepia-light: #c49a3c;
+  --cream: #faf3e0;
+  --dark-footer: #0f0a06;
+  --text-body: #2c1810;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  background-color: var(--parchment);
+  color: var(--text-body);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+  background: var(--ink);
+  color: #c9a84c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 40px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  font-family: 'EB Garamond', serif;
+}
+.top-bar-left { display: flex; align-items: center; gap: 10px; }
+.top-bar-left span { font-size: 11px; opacity: 0.8; }
+.social-icons { display: flex; gap: 8px; }
+.social-icons a {
+  width: 22px; height: 22px; border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: bold;
+  text-decoration: none; color: white; transition: opacity 0.2s;
+}
+.social-icons a:hover { opacity: 0.8; }
+.social-icons .yt { background: #ff0000; }
+.social-icons .ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+.social-icons .fb { background: #1877f2; }
+.top-bar-right {
+  font-style: italic; font-size: 12px;
+  color: #c9a84c; font-family: 'Noto Serif Bengali', serif; opacity: 0.9;
+}
+
+/* ── NAVBAR ── */
+nav {
+  background: var(--cream);
+  border-bottom: 2px solid var(--parchment-deeper);
+  padding: 12px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 20px rgba(90,50,10,0.12);
+}
+.logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.logo-circle {
+  width: 70px; height: 70px; border-radius: 50%;
+  border: 2px solid var(--maroon); background: var(--parchment-dark);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.logo-text-wrap { display: flex; flex-direction: column; }
+.logo-bengali-top { font-family: 'Noto Serif Bengali', serif; font-size: 13px; color: var(--maroon); line-height: 1.2; font-weight: 600; }
+.logo-bengali-main { font-family: 'Noto Serif Bengali', serif; font-size: 26px; color: var(--maroon); font-weight: 700; line-height: 1; }
+.logo-latin { font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em; color: var(--sepia); margin-top: 2px; }
+
+.nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+.nav-links a {
+  font-family: 'Cinzel', serif; font-size: 11.5px; letter-spacing: 0.1em;
+  color: var(--ink-light); text-decoration: none;
+  padding: 6px 12px; border-radius: 2px; transition: all 0.2s; font-weight: 600;
+}
+.nav-links a:hover { color: var(--maroon); background: var(--parchment); }
+.nav-links a.active { color: var(--maroon); border-bottom: 2px solid var(--maroon); }
+.nav-cta {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.12em;
+  background: var(--maroon); color: var(--parchment) !important;
+  padding: 9px 20px !important; border-radius: 2px; font-weight: 700;
+}
+.nav-cta:hover { background: var(--maroon-dark) !important; color: #f0d890 !important; }
+.nav-search { font-size: 17px; cursor: pointer; color: var(--ink-light); padding: 6px; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 26px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+/* Mobile nav */
+.mobile-nav {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--cream); z-index: 200;
+  flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: 0.15em;
+  color: var(--ink); text-decoration: none; font-weight: 600;
+  padding: 10px 20px; border-bottom: 1px solid var(--parchment-deeper);
+  width: 200px; text-align: center;
+}
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav-close {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 24px; cursor: pointer; color: var(--ink); background: none; border: none;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  background: linear-gradient(to right, var(--parchment-dark), var(--parchment-deeper));
+  border-bottom: 2px solid var(--parchment-deeper);
+  padding: 50px 40px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(139,105,20,0.03) 40px, rgba(139,105,20,0.03) 80px);
+}
+.page-header-inner { position: relative; z-index: 1; }
+.page-label {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.25em;
+  color: var(--sepia); font-weight: 600; margin-bottom: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.page-label::before, .page-label::after {
+  content: ''; width: 40px; height: 1px; background: var(--sepia-light);
+}
+.page-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900; color: var(--ink); margin-bottom: 10px;
+}
+.page-title .accent { color: var(--maroon); }
+.page-subtitle {
+  font-family: 'EB Garamond', serif; font-size: 18px; font-style: italic;
+  color: var(--ink-light); max-width: 500px; margin: 0 auto;
+}
+
+/* ── BOOK SECTION ── */
+.books-section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.book-card {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 60px;
+  background: var(--cream);
+  border: 1px solid var(--parchment-deeper);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 4px 4px 24px rgba(90,50,10,0.12);
+  margin-bottom: 60px;
+}
+
+/* Book cover */
+.book-cover-wrap {
+  background: linear-gradient(135deg, var(--parchment-dark), var(--parchment-deeper));
+  padding: 30px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 20px;
+  position: relative;
+}
+.book-cover-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 6px; height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);
+}
+.book-cover {
+  width: 200px;
+  box-shadow: 6px 8px 24px rgba(0,0,0,0.35), -2px 0 8px rgba(0,0,0,0.1);
+  border-radius: 2px 4px 4px 2px;
+  display: block;
+  transition: transform 0.3s;
+}
+.book-cover:hover { transform: rotate(-2deg) scale(1.03); }
+
+.book-badge {
+  background: var(--maroon);
+  color: var(--parchment);
+  font-family: 'Cinzel', serif;
+  font-size: 9px; letter-spacing: 0.15em; font-weight: 700;
+  padding: 5px 14px; border-radius: 2px;
+  text-transform: uppercase;
+}
+
+/* Book details */
+.book-details {
+  padding: 40px 40px 40px 0;
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.book-tag {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em;
+  color: var(--sepia); font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+.book-tag::before { content: ''; width: 30px; height: 1px; background: var(--sepia-light); }
+
+.book-title-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px; font-weight: 900;
+  color: var(--ink); line-height: 1.15;
+}
+.book-title-main .accent { color: var(--maroon); }
+
+.book-author {
+  font-family: 'EB Garamond', serif; font-size: 16px; font-style: italic;
+  color: var(--sepia);
+}
+.book-author span { font-weight: 600; color: var(--ink-light); font-style: normal; }
+
+.book-ornament {
+  display: flex; align-items: center; gap: 10px; opacity: 0.4;
+}
+.book-ornament::before, .book-ornament::after {
+  content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--maroon);
+}
+
+.book-description {
+  font-family: 'EB Garamond', serif; font-size: 16.5px;
+  color: var(--ink-light); line-height: 1.75;
+}
+
+.book-description-bengali {
+  font-family: 'Noto Serif Bengali', serif; font-size: 15px;
+  color: var(--ink-light); line-height: 1.9;
+  padding: 16px 20px;
+  background: rgba(139,105,20,0.06);
+  border-left: 3px solid var(--maroon);
+  border-radius: 0 2px 2px 0;
+  font-style: italic;
+}
+
+.book-meta {
+  display: flex; flex-wrap: wrap; gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--parchment-deeper);
+  border-bottom: 1px solid var(--parchment-deeper);
+}
+.meta-item { display: flex; flex-direction: column; gap: 3px; }
+.meta-label {
+  font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.15em;
+  color: var(--sepia); font-weight: 600;
+}
+.meta-value {
+  font-family: 'EB Garamond', serif; font-size: 15px;
+  color: var(--ink); font-weight: 600;
+}
+
+/* Price */
+.book-price-row {
+  display: flex; align-items: baseline; gap: 12px;
+}
+.price-label { font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.12em; color: var(--sepia); }
+.price-original {
+  font-family: 'EB Garamond', serif; font-size: 18px;
+  color: var(--sepia); text-decoration: line-through; opacity: 0.7;
+}
+.price-sale {
+  font-family: 'Playfair Display', serif; font-size: 28px;
+  font-weight: 900; color: var(--maroon);
+}
+.price-discount {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.1em;
+  background: #2d6a2d; color: white;
+  padding: 3px 8px; border-radius: 2px; font-weight: 700;
+}
+
+/* Buy links */
+.buy-section { display: flex; flex-direction: column; gap: 14px; }
+.buy-title {
+  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.2em;
+  color: var(--ink); font-weight: 700;
+}
+.buy-links-grid {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.buy-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 2px;
+  font-family: 'Cinzel', serif; font-size: 10.5px;
+  letter-spacing: 0.1em; font-weight: 700;
+  text-decoration: none; transition: all 0.2s;
+  border: 2px solid transparent;
+}
+.buy-btn-primary {
+  background: var(--maroon); color: var(--parchment);
+  box-shadow: 3px 3px 0 var(--maroon-dark);
+}
+.buy-btn-primary:hover {
+  background: var(--maroon-dark); transform: translate(-1px,-1px);
+  box-shadow: 4px 4px 0 var(--maroon-dark); color: #f0d890;
+}
+.buy-btn-secondary {
+  background: transparent; color: var(--maroon);
+  border-color: var(--maroon);
+}
+.buy-btn-secondary:hover {
+  background: var(--maroon); color: var(--parchment);
+}
+.buy-btn-amazon { background: #ff9900; color: #0f1111; border-color: #ff9900; }
+.buy-btn-amazon:hover { background: #e68900; border-color: #e68900; }
+.buy-btn-flipkart { background: #2874f0; color: white; border-color: #2874f0; }
+.buy-btn-flipkart:hover { background: #1a5fd4; border-color: #1a5fd4; }
+
+.buy-btn-icon { font-size: 14px; }
+
+/* More books coming section */
+.coming-soon-strip {
+  background: linear-gradient(to right, var(--parchment-dark), var(--parchment-deeper), var(--parchment-dark));
+  border: 1px dashed var(--parchment-deeper);
+  border-radius: 4px;
+  padding: 50px 40px;
+  text-align: center;
+  margin-top: 20px;
+}
+.coming-soon-strip h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 700; color: var(--ink);
+  margin-bottom: 10px;
+}
+.coming-soon-strip p {
+  font-family: 'EB Garamond', serif; font-size: 16px; font-style: italic;
+  color: var(--ink-light); max-width: 400px; margin: 0 auto;
+}
+.coming-ornament { font-size: 28px; opacity: 0.3; margin-bottom: 14px; display: block; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark-footer); color: #c9a84c;
+  padding: 50px 40px 20px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 40px; margin-bottom: 40px; padding-bottom: 40px;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.footer-tagline {
+  font-family: 'EB Garamond', serif; font-size: 14px; font-style: italic;
+  color: rgba(201,168,76,0.7); margin-top: 14px; line-height: 1.6;
+}
+.footer-col-title {
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em;
+  color: rgba(201,168,76,0.5); margin-bottom: 14px; font-weight: 600;
+}
+.footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; list-style: none; }
+.footer-links a {
+  font-family: 'EB Garamond', serif; font-size: 14px;
+  color: rgba(201,168,76,0.7); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: #c9a84c; }
+.footer-social { display: flex; flex-direction: column; gap: 10px; }
+.footer-social-icons { display: flex; gap: 10px; margin-bottom: 6px; }
+.footer-social-icons a {
+  width: 32px; height: 32px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: bold; text-decoration: none; color: white; transition: opacity 0.2s;
+}
+.footer-social-icons a:hover { opacity: 0.8; }
+.footer-social-icons .yt { background: #ff0000; }
+.footer-social-icons .ig { background: linear-gradient(45deg,#f09433,#dc2743,#bc1888); }
+.footer-social-icons .fb { background: #1877f2; }
+.footer-handle { font-family: 'EB Garamond', serif; font-size: 13px; color: rgba(201,168,76,0.6); font-style: italic; }
+.footer-newsletter { display: flex; flex-direction: column; gap: 10px; }
+.newsletter-desc { font-family: 'EB Garamond', serif; font-size: 13px; color: rgba(201,168,76,0.6); line-height: 1.5; }
+.newsletter-form { display: flex; }
+.newsletter-form input {
+  flex: 1; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,168,76,0.3); border-right: none;
+  color: #c9a84c; font-family: 'EB Garamond', serif; font-size: 13px;
+  padding: 10px 14px; outline: none; border-radius: 2px 0 0 2px;
+}
+.newsletter-form input::placeholder { color: rgba(201,168,76,0.3); }
+.newsletter-form button {
+  background: var(--maroon); border: none; color: var(--parchment);
+  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.12em;
+  font-weight: 700; padding: 10px 16px; cursor: pointer;
+  border-radius: 0 2px 2px 0; transition: background 0.2s; white-space: nowrap;
+}
+.newsletter-form button:hover { background: var(--maroon-dark); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'EB Garamond', serif; font-size: 12.5px; color: rgba(201,168,76,0.4);
+}
+.footer-heart { color: var(--maroon); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .book-card { grid-template-columns: 1fr; }
+  .book-cover-wrap { padding: 30px; flex-direction: row; gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .book-details { padding: 0 24px 32px; }
+}
+@media (max-width: 768px) {
+  .top-bar { padding: 6px 16px; }
+  .top-bar-right { display: none; }
+  nav { padding: 10px 16px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .page-header { padding: 36px 20px 28px; }
+  .books-section { padding: 36px 16px; }
+  .book-details { padding: 0 16px 24px; }
+  .book-title-main { font-size: 26px; }
+  .buy-links-grid { flex-direction: column; }
+  .buy-btn { justify-content: center; }
+  footer { padding: 40px 16px 20px; }
+  .footer-top { grid-template-columns: 1fr; gap: 30px; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <span>Follow us on</span>
+    <div class="social-icons">
+      <a href="#" class="yt" title="YouTube">▶</a>
+      <a href="#" class="ig" title="Instagram">◈</a>
+      <a href="#" class="fb" title="Facebook">f</a>
+    </div>
+  </div>
+  <div class="top-bar-right">"গল্প হলেও সত্যি, ইতিহাসের পাতায় লেখা আমাদের শহর কলকাতা"</div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-circle" style="background:none;border:none;">
+      <img src="./images/logo-dark.png" alt="Golpo Holeo Sotyi Logo" style="width:70px;height:70px;object-fit:contain;border-radius:50%;">
+    </div>
+    <div class="logo-text-wrap">
+      <span class="logo-bengali-top">গল্প হলেও</span>
+      <span class="logo-bengali-main">সত্যি</span>
+      <span class="logo-latin">GOLPO HOLEO SOTYI</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">⌂</a></li>
+    <li><a href="explore.html">EXPLORE</a></li>
+    <li><a href="catalogue.html">CATALOGUE</a></li>
+    <li><a href="blogs.html">BLOGS</a></li>
+    <li><a href="events.html">EVENTS</a></li>
+    <li><a href="books.html" class="active">BOOKS</a></li>
+    <li><a href="about.html">ABOUT</a></li>
+    <li><span class="nav-search">🔍</span></li>
+    <li><a href="contact.html" class="nav-cta">CONTACT</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
+  <a href="index.html" onclick="toggleMobileNav()">⌂ HOME</a>
+  <a href="explore.html" onclick="toggleMobileNav()">EXPLORE</a>
+  <a href="catalogue.html" onclick="toggleMobileNav()">CATALOGUE</a>
+  <a href="blogs.html" onclick="toggleMobileNav()">BLOGS</a>
+  <a href="events.html" onclick="toggleMobileNav()">EVENTS</a>
+  <a href="books.html" onclick="toggleMobileNav()">BOOKS</a>
+  <a href="about.html" onclick="toggleMobileNav()">ABOUT</a>
+  <a href="contact.html" onclick="toggleMobileNav()">CONTACT</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-label">GOLPO HOLEO SOTYI</div>
+    <h1 class="page-title">Our <span class="accent">Books</span></h1>
+    <p class="page-subtitle">Stories from the pages of history, bound between covers</p>
+  </div>
+</div>
+
+<!-- BOOKS SECTION -->
+<section class="books-section">
+
+  <!-- BOOK 1 -->
+  <div class="book-card">
+
+    <!-- Cover -->
+    <div class="book-cover-wrap">
+      <img src="./images/card-books.jpg" alt="Golpo Holeo Shottyi Book Cover" class="book-cover">
+      <span class="book-badge">✦ New Release</span>
+    </div>
+
+    <!-- Details -->
+    <div class="book-details">
+      <div class="book-tag">HISTORICAL NON-FICTION · BENGALI</div>
+
+      <h2 class="book-title-main">গল্প হলেও <span class="accent">সত্যি</span></h2>
+      <p style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:0.08em;color:var(--sepia);margin-top:-8px;">Golpo Holeo Shottyi</p>
+
+      <p class="book-author">by <span>Sounak Kundu</span></p>
+
+      <div class="book-ornament"><span style="color:var(--maroon);font-size:14px;">❧</span></div>
+
+      <p class="book-description">
+        Every city has its own story — and Kolkata's story is written in its heritage. Even amid the chaos of the twenty-first century, the city still breathes with the scent of a lost era. In its lanes and alleys, behind its old facades, live forgotten tales, curious characters, and moments that shaped its soul.
+        <br><br>
+        From unfamiliar tales of familiar neighbourhoods, eccentric aristocrats, and unsung heroes, to little-known episodes from Bengal's Renaissance — each story peels back a layer of the city's mysterious past. A blend of history, nostalgia, and urban legend, this book invites readers to rediscover Kolkata — the city where every story, no matter how strange, might just be true.
+      </p>
+
+      <div class="book-description-bengali">
+        কলকাতার রাস্তায়-ঘাটে অলিতে-গলিতে ঘুরলে আজও সেই পুরোনো শহরটির, তার নানা রঙের মানুষগুলির, এবং তাঁদের ঘিরে ঘটে যাওয়া কিছু অদ্ভুত ঘটনার কথা খুঁজে পাওয়া যায়।
+      </div>
+
+      <div class="book-meta">
+        <div class="meta-item">
+          <span class="meta-label">ISBN</span>
+          <span class="meta-value">9789348813909</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Pages</span>
+          <span class="meta-value">255</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Binding</span>
+          <span class="meta-value">Hard Cover with Jacket</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Publisher</span>
+          <span class="meta-value">Patra Bharati</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Language</span>
+          <span class="meta-value">Bengali</span>
+        </div>
+      </div>
+
+      <div class="book-price-row">
+        <span class="price-label">PRICE</span>
+        <span class="price-original">₹385.00</span>
+        <span class="price-sale">₹346.50</span>
+        <span class="price-discount">10% OFF</span>
+      </div>
+
+      <div class="buy-section">
+        <div class="buy-title">WHERE TO BUY</div>
+        <div class="buy-links-grid">
+          <a href="https://www.patrabharati.com/product-page/golpo-holeo-shottyi" target="_blank" rel="noopener" class="buy-btn buy-btn-primary">
+            <span class="buy-btn-icon">📖</span> Patra Bharati
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="buy-btn buy-btn-amazon">
+            <span class="buy-btn-icon">📦</span> Amazon.in
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="buy-btn buy-btn-flipkart">
+            <span class="buy-btn-icon">🛍</span> Flipkart
+          </a>
+          <!-- Add more buy links here as needed -->
+        </div>
+        <p style="font-family:'EB Garamond',serif;font-size:13px;color:var(--sepia);font-style:italic;">
+          Free shipping on orders above ₹500 on Patra Bharati
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MORE BOOKS COMING SOON -->
+  <div class="coming-soon-strip">
+    <span class="coming-ornament">✦ ✦ ✦</span>
+    <h3>More Books Coming Soon</h3>
+    <p>Stay tuned as we uncover more stories from the pages of Kolkata's forgotten history.</p>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="logo" style="margin-bottom:14px;">
+        <div class="logo-circle" style="border-color:rgba(201,168,76,0.4);background:transparent;border:none;">
+          <img src="./images/logo-light.png" alt="Golpo Holeo Sotyi Logo" style="width:70px;height:70px;object-fit:contain;border-radius:50%;">
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-bengali-top" style="color:#c9a84c;">গল্প হলেও</span>
+          <span class="logo-bengali-main" style="color:#c9a84c;">সত্যি</span>
+          <span class="logo-latin" style="color:rgba(201,168,76,0.6);">GOLPO HOLEO SOTYI</span>
+        </div>
+      </div>
+      <p class="footer-tagline">Bringing to life the true stories of our city, our people and our past.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">QUICK LINKS</div>
+      <ul class="footer-links">
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="catalogue.html">Catalogue</a></li>
+        <li><a href="books.html">Books</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-social">
+      <div class="footer-col-title">FOLLOW US</div>
+      <div class="footer-social-icons">
+        <a href="#" class="yt" title="YouTube">▶</a>
+        <a href="#" class="ig" title="Instagram">◈</a>
+        <a href="#" class="fb" title="Facebook">f</a>
+      </div>
+      <div class="footer-handle">/ GolpoHoleoSotyi</div>
+    </div>
+    <div class="footer-newsletter">
+      <div class="footer-col-title">NEWSLETTER</div>
+      <p class="newsletter-desc">Subscribe to get updates on new stories, events and heritage walks.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Your email address">
+        <button>SUBSCRIBE</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Golpo Holeo Sotyi. All Rights Reserved.</span>
+    <span>Designed with <span class="footer-heart">♥</span> for history lovers.</span>
+  </div>
+</footer>
+
+<script>
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileNav').classList.contains('open') ? 'hidden' : '';
+}
+</script>
+</body>
+</html>
